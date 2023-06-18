@@ -1,4 +1,17 @@
+/* Ex1 */
 button {
     display: block;
     margin-top: 16px;
+}
+
+/* Ex3 */
+h2 {
+    color: #161ea3;
+    text-decoration: solid #161ea3;
+}
+
+.footer {
+    font-size: 2em;
+    font-weight: bold;
+    color: black;
 }
