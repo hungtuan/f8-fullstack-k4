@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Bài 3</title>
+    <style>
+      .custom-btn {
+        display: flex;
+        align-items: center;
+      }
+
+      table td {
+        padding-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Get in touch with us by filling contact form below</h1>
+
+    <form>
+      <table class="custom-table" cellspacing="0">
+        <tr>
+          <td>
+            <input type="text" placeholder="* Enter your full name" />
+            <input type="text" placeholder="* Enter your email address" />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" placeholder="* Enter your subject" />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <textarea
+              rows="9"
+              cols="45"
+              placeholder="* Your message here"
+            ></textarea>
+          </td>
+        </tr>
+      </table>
+      <div class="custom-btn">
+        <button type="submit">Send message</button>
+        <p>* Please fill all require form field, thanks!</p>
+      </div>
+    </form>
+  </body>
+</html>
