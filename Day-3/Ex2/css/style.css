@@ -1,0 +1,48 @@
+/* * {
+    color: red;
+} */
+
+.title {
+    color:  red;
+}
+
+p {
+    color: aqua;
+}
+
+#sub-title {
+    color: blue;
+}
+
+.box h2 {
+    color: aquamarine;
+}
+
+.content h2 {
+    color: brown;
+}
+
+.sub-content > h2 {
+    color: blueviolet;
+}
+
+h1#first.name {
+    color: red;
+}
+
+h2.name {
+    color: cadetblue;
+}
+
+.sub-box  h2 ~ p{
+    color: red;
+}
+
+.content-1 h2 + h2{
+    color: red;
+}
+.todos input:checked ~span {
+    color: red;
+}
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/f2f703d589.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Bài 1</title>
+  </head>
+  <body>
+    <section class="container">
+      <h1>CONTACT US</h1>
+      <hr />
+      <div class="contact">
+        <div class="contact-info">
+          <h2>Contact Info</h2>
+          <a href="#!" target="_blank" rel="noopener noreferrer"
+            ><i class="fa-solid fa-location-dot"></i> 321 Awesome Street</a
+          >
+
+          <a href="#!" target="_blank" rel="noopener noreferrer"
+            ><i class="fa-regular fa-envelope"></i> info@companyname.com</a
+          >
+
+          <a href="#!" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-phone"></i>
+            +1 800 123 1234
+          </a>
+        </div>
+
+        <form
+          action="https://api-gateway.fullstack.edu.vn/action_page.php"
+          method="post"
+        >
+          <h2>Having Any Query! Or Book an appointment</h2>
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="text" name="subject" placeholder="Subject" required />
+          <textarea
+            id="message"
+            name="message"
+            cols="50"
+            rows="5"
+            placeholder="Message"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
