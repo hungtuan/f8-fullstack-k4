@@ -1,0 +1,36 @@
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  a {
+    display: inline-block;
+    animation: fadeIn 1s ease-in-out;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #06b1e4;
+  }
+  
+  h1 {
+    font-size: 30px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
