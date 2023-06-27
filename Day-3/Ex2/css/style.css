@@ -1,48 +1,56 @@
-/* * {
-    color: red;
-} */
-
-.title {
-    color:  red;
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-p {
-    color: aqua;
+body {
+    background-color: #f6f6f6;
 }
 
-#sub-title {
-    color: blue;
+.feedback h2 {
+    display: flex;
+    justify-content: center;
+    
 }
 
-.box h2 {
-    color: aquamarine;
+hr {
+    margin-top: -15px;
+    border: 2px solid #5e98fc;
+    max-width: 40px;
+    border-radius: 10px;
+
 }
 
-.content h2 {
-    color: brown;
+h3 {
+    opacity: 0.5;
+    font-size: 16px;
 }
 
-.sub-content > h2 {
-    color: blueviolet;
+q {
+    color: #808b9a;
+    font-style: italic;
+    font-size: 14px;
 }
 
-h1#first.name {
-    color: red;
+.feedback-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 60px;
+    max-width: 1400px;
+    margin: 90px auto;
+    
 }
 
-h2.name {
-    color: cadetblue;
+.feedback-list .feedback-item {
+   display: flex;
 }
 
-.sub-box  h2 ~ p{
-    color: red;
+.feedback-list .feedback-item div {
+    margin-left: 15px;
 }
 
-.content-1 h2 + h2{
-    color: red;
+.feedback-item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
 }
-.todos input:checked ~span {
-    color: red;
-}
-
-
