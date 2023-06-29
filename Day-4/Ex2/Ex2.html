@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Form đặt bàn</title>
+  </head>
+  <body>
+    <section class="container">
+      <div class="custom-order">
+        <h3>RESERVATION</h3>
+        <h2>Book your table</h2>
+        <form>
+          <input type="text" name="name" id="name" placeholder="NAME" />
+          <input type="email" name="email" id="email" placeholder="EMAIL" />
+          <input
+            type="text"
+            name="date"
+            id="date"
+            placeholder="DATE"
+            onfocus="(this.type='date')"
+            onblur="if(!this.value) this.type='text'"
+          />
+          <input
+            type="text"
+            name="time"
+            id="time"
+            placeholder="TIME"
+            onfocus="(this.type='time')"
+            onblur="if(!this.value) this.type='text'"
+          />
+          <input
+            type="number"
+            name="people"
+            id="people"
+            placeholder="PEOPLE"
+            min="1"
+          />
+          <button type="submit">Find A Table</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

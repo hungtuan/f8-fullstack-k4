@@ -1,0 +1,72 @@
+body {
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  height: 100vh;
+}
+
+.custom-order {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200xp;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #5c4b3f;
+}
+
+h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-family: "Alfa Slab One", sans-serif;
+  font-size: 3.4rem;
+  color: #392617;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 90%;
+  max-width: 700px;
+
+  margin: 0 auto;
+}
+
+input {
+  font-size: 1.4rem;
+  padding: 8px;
+  border: 1px solid #d1d1d1;
+  color: #3e3e3d;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+input::placeholder {
+  padding-left: 15px;
+  color: #3e3e3d;
+}
+
+button {
+  border-radius: 5px;
+  color: white;
+  font-family: "Alfa Slab One", sans-serif;
+  background-color: #b0322b;
+  border: 1px solid #f6e9e8;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #8c1f1a;
+}
