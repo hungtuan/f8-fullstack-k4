@@ -274,6 +274,103 @@ a:hover > .image-4 .tab-hidden {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+/* */
+#haircare:checked ~ .products a .image-1:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhsmc928ctqd99_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#haircare:checked ~ .products a .image-2:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/sg-11134201-23020-rm8vwbd23cnv86_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#haircare:checked ~ .products a .image-3:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhvj96kbhrr5a7_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#haircare:checked ~ .products a .image-4:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhvj96kbhrr5a7_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*  */
+#cosmeticscases:checked ~ .products a .image-1:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhsmc928ctqd99_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#cosmeticscases:checked ~ .products a .image-2:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/sg-11134201-23020-rm8vwbd23cnv86_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#cosmeticscases:checked ~ .products a .image-3:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhvj96kbhrr5a7_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#cosmeticscases:checked ~ .products a .image-4:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhvj96kbhrr5a7_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*  */
+#fragrance:checked ~ .products a .image-1:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhsmc928ctqd99_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#fragrance:checked ~ .products a .image-2:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/sg-11134201-23020-rm8vwbd23cnv86_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#fragrance:checked ~ .products a .image-3:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhvj96kbhrr5a7_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#fragrance:checked ~ .products a .image-4:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhvj96kbhrr5a7_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/*  */
+#makeup:checked ~ .products a .image-1:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhsmc928ctqd99_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#makeup:checked ~ .products a .image-2:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/sg-11134201-23020-rm8vwbd23cnv86_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#makeup:checked ~ .products a .image-3:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/a90dfe8d8a12e7f93744023d302242cf_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#makeup:checked ~ .products a .image-4:hover {
+  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhvj96kbhrr5a7_tn);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
 /* Image */
 .image-1,
@@ -383,5 +480,20 @@ a:hover > .image-4 .tab-hidden {
   color: green;
 }
 #makeup:checked ~ .products a {
+  .image-1 {
+    background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-23030-ku3stqpchlovb1_tn);
+  }
+
+  .image-2 {
+    background-image: url(https://down-vn.img.susercontent.com/file/d2d321ac71fdeb17b8f9e800b28bd67d_tn);
+  }
+
+  .image-3 {
+    background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhyhe0lrgyip06_tn);
+  }
+
+  .image-4 {
+    background-image: url(https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhsmc92877gl97_tn);
+  }
   color: red;
 }
