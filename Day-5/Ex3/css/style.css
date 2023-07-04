@@ -1,36 +1,68 @@
-@font-face {
-  font-family: OpenSans;
-  src: url("../fonts/OpenSans_Condensed-Light.ttf");
-  font-weight: 300;
+/* reset css */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-@font-face {
-  font-family: OpenSans;
-  src: url("../fonts/OpenSans_Condensed-Medium.ttf");
-  font-weight: 500;
+.margin-left-right-30 {
+  margin: 0px 30px;
 }
-
-@font-face {
-  font-family: OpenSans;
-  src: url("../fonts/OpenSans_Condensed-Bold.ttf");
-  font-weight: 700;
+/* css for section-services */
+.section-service {
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Kablammo&display=swap");
-
-/* 
-font-weight 
-font-style:*/
-
-body {
-  font-family: "Kablammo", cursive;
-  text-indent: 20px;
-}
-
-/* .box {
-  word-wrap: break-word;
-} */
-
-.span-wrap {
+/* css for section-heading */
+.section-heading {
+  margin: 40px 0px 100px 0px;
   text-align: center;
+}
+.section-heading h2 {
+  font-size: 34px;
+  line-height: 50px;
+}
+/* css for section-content */
+.section-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+/* css for content-item */
+.content-item {
+  width: 360px;
+  height: 440px;
+  text-align: center;
+  padding: 31px;
+  margin-bottom: 0px;
+  box-shadow: 0px 0px 10px #888888;
+  transition: 0.4s ease;
+}
+.content-item:hover {
+  transform: translateY(-10px);
+}
+.content-item .icon {
+  width: 140px;
+  height: 140px;
+  border: 1px solid #f2a93a;
+  border-radius: 50%;
+  font-size: 50px;
+  line-height: 140px;
+  color: #f2a93a;
+  margin: 0 auto;
+}
+.content-item h3 {
+  font-size: 36px;
+  margin: 40px 0px;
+}
+.content-item p {
+  margin-bottom: 30px;
+}
+.content-item button {
+  padding: 16px 36px;
+  background-color: #f2a93a;
+  color: white;
+  font-weight: 100;
+  border: none;
+}
+.content-item button:hover {
+  cursor: pointer;
 }
