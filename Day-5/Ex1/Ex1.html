@@ -27,6 +27,7 @@
           <label for="name" class="icon-before"
             ><i class="fa-solid fa-user"></i
           ></label>
+          <span class="tooltip">Enter your name</span>
           <input type="text" name="name" id="name" placeholder="Your name" />
           <span class="icon-after"><i class="fa-solid fa-star"></i></span>
         </div>
@@ -35,6 +36,7 @@
           <label for="email" class="icon-before"
             ><i class="fa-solid fa-envelope"></i
           ></label>
+          <span class="tooltip">Enter your email</span>
           <input
             type="email"
             name="email"
@@ -46,8 +48,10 @@
 
         <div class="form-item">
           <label for="phone" class="icon-before"
-            ><i class="fa-solid fa-mobile-screen-button"></i></label
-          ><input
+            ><i class="fa-solid fa-mobile-screen-button"></i
+          ></label>
+          <span class="tooltip">Enter your phone</span>
+          <input
             type="tel"
             name="phone"
             id="phone"
@@ -57,8 +61,11 @@
         </div>
 
         <div class="form-item">
-          <label class="icon-before"><i class="fa-solid fa-book"></i></label>
-          <select>
+          <label for="subject" class="icon-before"
+            ><i class="fa-solid fa-book"></i
+          ></label>
+          <span class="tooltip">Choose your subject</span>
+          <select id="subject">
             <option hidden value="0">Subject</option>
             <option value="1">Audi</option>
             <option value="2">BMW</option>
@@ -83,6 +90,7 @@
           <label for="message" class="icon-before-message">
             <i class="fa-solid fa-message fa-flip-horizontal"></i
           ></label>
+          <span class="tooltip msg">Write your message</span>
           <textarea
             name="message"
             id="message"
