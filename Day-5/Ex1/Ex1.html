@@ -30,6 +30,7 @@
           <span class="tooltip">Enter your name</span>
           <input type="text" name="name" id="name" placeholder="Your name" />
           <span class="icon-after"><i class="fa-solid fa-star"></i></span>
+          <span class="icon-hidden"><i class="fa-solid fa-x"></i></span>
         </div>
 
         <div class="form-item">
@@ -44,6 +45,7 @@
             placeholder="your@domain.com"
           />
           <span class="icon-after"><i class="fa-solid fa-star"></i></span>
+          <span class="icon-hidden"><i class="fa-solid fa-x"></i></span>
         </div>
 
         <div class="form-item">
@@ -65,20 +67,13 @@
             ><i class="fa-solid fa-book"></i
           ></label>
           <span class="tooltip">Choose your subject</span>
-          <select id="subject">
+          <select id="subject" name="subject">
             <option hidden value="0">Subject</option>
-            <option value="1">Audi</option>
-            <option value="2">BMW</option>
-            <option value="3">Citroen</option>
-            <option value="4">Ford</option>
-            <option value="5">Honda</option>
-            <option value="6">Jaguar</option>
-            <option value="7">Land Rover</option>
-            <option value="8">Mercedes</option>
-            <option value="9">Mini</option>
-            <option value="10">Nissan</option>
-            <option value="11">Toyota</option>
-            <option value="12">Volvo</option>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="citroen">Citroen</option>
+            <option value="ford">Ford</option>
+            <option value="honda">Honda</option>
           </select>
           <span class="icon-after custom"
             ><i class="fa-solid fa-caret-up"></i
@@ -91,6 +86,7 @@
             <i class="fa-solid fa-message fa-flip-horizontal"></i
           ></label>
           <span class="tooltip msg">Write your message</span>
+
           <textarea
             name="message"
             id="message"
@@ -100,6 +96,7 @@
           <span class="icon-after"
             ><i class="fa-solid fa-star custom"></i
           ></span>
+          <span class="icon-hidden"><i class="fa-solid fa-x custom"></i></span>
         </div>
 
         <div class="form-item-checkbox-btn">
