@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Bài tập 1</title>
+  </head>
+  <body>
+    <section class="container">
+      <h2 class="title">Hey there</h2>
+      <p>
+        <small class="highlight">We'd like hear from you.</small> Send us your
+        message or just say hy with our contact from or directly via pjone, we
+        love to chat.
+      </p>
+
+      <form>
+        <div class="form-item">
+          <label for="name" class="icon-before"
+            ><i class="fa-solid fa-user"></i
+          ></label>
+          <input type="text" name="name" id="name" placeholder="Your name" />
+          <span class="icon-after"><i class="fa-solid fa-star"></i></span>
+        </div>
+
+        <div class="form-item">
+          <label for="email" class="icon-before"
+            ><i class="fa-solid fa-envelope"></i
+          ></label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="your@domain.com"
+          />
+          <span class="icon-after"><i class="fa-solid fa-star"></i></span>
+        </div>
+
+        <div class="form-item">
+          <label for="phone" class="icon-before"
+            ><i class="fa-solid fa-mobile-screen-button"></i></label
+          ><input
+            type="tel"
+            name="phone"
+            id="phone"
+            placeholder="+44 00 123"
+            pattern="[0-9]{10}"
+          />
+        </div>
+
+        <div class="form-item">
+          <label class="icon-before"><i class="fa-solid fa-book"></i></label>
+          <select>
+            <option hidden value="0">Subject</option>
+            <option value="1">Audi</option>
+            <option value="2">BMW</option>
+            <option value="3">Citroen</option>
+            <option value="4">Ford</option>
+            <option value="5">Honda</option>
+            <option value="6">Jaguar</option>
+            <option value="7">Land Rover</option>
+            <option value="8">Mercedes</option>
+            <option value="9">Mini</option>
+            <option value="10">Nissan</option>
+            <option value="11">Toyota</option>
+            <option value="12">Volvo</option>
+          </select>
+          <span class="icon-after custom"
+            ><i class="fa-solid fa-caret-up"></i
+            ><i class="fa-solid fa-caret-down"></i
+          ></span>
+        </div>
+
+        <div class="form-item-message">
+          <label for="message" class="icon-before-message">
+            <i class="fa-solid fa-message fa-flip-horizontal"></i
+          ></label>
+          <textarea
+            name="message"
+            id="message"
+            placeholder="Message"
+          ></textarea>
+
+          <span class="icon-after"
+            ><i class="fa-solid fa-star custom"></i
+          ></span>
+        </div>
+
+        <div class="form-item-checkbox-btn">
+          <div class="box">
+            <input type="checkbox" id="checkbox" />
+            <label class="chekcbox-text" for="checkbox"
+              >Send me a copy of this message</label
+            >
+          </div>
+
+          <button class="btn" type="submit">SEND</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>

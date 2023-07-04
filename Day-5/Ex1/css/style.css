@@ -1,0 +1,245 @@
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+body {
+  height: 100vh;
+  max-width: 500px;
+  font-family: "Lato", sans-serif;
+  font-size: 62.5%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  color: #aaaaaa;
+  font-size: 1rem;
+}
+
+.container {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+/* title */
+.title {
+  font-family: "Lobster", cursive;
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #333333;
+  margin: 10px 0;
+}
+
+.highlight {
+  color: #ed6157;
+}
+
+p {
+  word-break: break-word;
+}
+
+/*button*/
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 40px;
+  width: 130px;
+  height: 40px;
+  border: 1px solid #f5a39d;
+  color: #fef9f9;
+  background-color: #ea3f33;
+}
+
+.chekcbox-text {
+  margin-left: 5px;
+}
+
+/* form */
+form {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-item {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.icon-before {
+  position: absolute;
+  background-color: #dddddd;
+  width: 40px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 5px;
+}
+
+.icon-after {
+  position: absolute;
+  width: 40px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 5px;
+}
+
+.icon-after.custom {
+  flex-direction: column;
+  padding: 20px 0 20px 0;
+}
+
+.form-item-message .icon-before-message {
+  position: absolute;
+  background-color: #dddddd;
+  width: 40px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 5px;
+}
+
+.fa-solid.fa-message.fa-flip-horizontal {
+  margin-top: -150px;
+}
+
+.fa-solid.fa-user,
+.fa-solid.fa-envelope,
+.fa-solid.fa-mobile-screen-button,
+.fa-solid.fa-book,
+.fa-solid.fa-message.fa-flip-horizontal {
+  color: white;
+}
+
+.fa-solid.fa-star,
+.fa-solid.fa-caret-up,
+.fa-solid.fa-caret-down {
+  color: #dddddd;
+  font-size: 0.6rem;
+}
+
+.fa-solid.fa-star.custom {
+  margin-top: -160px;
+}
+
+select {
+  font-size: 0.9rem;
+  margin-left: 48px;
+  width: 100%;
+  height: 100%;
+  padding-left: 12px;
+  border: 2px solid #dddddd;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-item input {
+  font-size: 0.9rem;
+  padding: 0 0 0 60px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #dddddd;
+}
+
+.form-item-message {
+  position: relative;
+  display: flex;
+  flex: 5;
+  align-items: center;
+  height: 100%;
+}
+
+textarea {
+  height: 100%;
+  font-size: 0.9rem;
+  width: 100%;
+  resize: none;
+  border: 2px solid #dddddd;
+  padding: 0 0 0 60px;
+}
+
+.form-item-checkbox-btn {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-item-checkbox-btn .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-item-checkbox-btn div input {
+  width: 27px;
+  height: 27px;
+  margin-left: 0;
+}
+
+/* Định dạng checkbox */
+input[type="checkbox"] {
+  border: 3px solid #a8a4a4;
+  background-color: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+}
+
+/* Định dạng checkbox khi được chọn */
+input[type="checkbox"]:checked {
+  background-color: white;
+}
+
+/* Tùy chỉnh kiểu tick */
+input[type="checkbox"]:checked:after {
+  content: "\2714";
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}
+
+/* Hover */
+.form-item:hover > .icon-before {
+  background-color: #000000;
+}
+
+.form-item-message:hover > .icon-before-message {
+  background-color: #000000;
+}
+
+.form-item:hover > input {
+  border: 2px solid #000000;
+}
+
+.form-item:hover > select {
+  border: 2px solid #000000;
+}
+
+.form-item-message:hover > textarea {
+  border: 2px solid #000000;
+}

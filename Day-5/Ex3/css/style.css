@@ -1,0 +1,36 @@
+@font-face {
+  font-family: OpenSans;
+  src: url("../fonts/OpenSans_Condensed-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: OpenSans;
+  src: url("../fonts/OpenSans_Condensed-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: OpenSans;
+  src: url("../fonts/OpenSans_Condensed-Bold.ttf");
+  font-weight: 700;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Kablammo&display=swap");
+
+/* 
+font-weight 
+font-style:*/
+
+body {
+  font-family: "Kablammo", cursive;
+  text-indent: 20px;
+}
+
+/* .box {
+  word-wrap: break-word;
+} */
+
+.span-wrap {
+  text-align: center;
+}
