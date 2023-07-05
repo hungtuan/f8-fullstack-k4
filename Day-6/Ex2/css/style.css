@@ -1,0 +1,10 @@
+div {
+  background: gray;
+  /* position: absolute;
+  width: 100%; */
+}
+
+div h2 {
+  margin: 0;
+  padding: 30px 0;
+}

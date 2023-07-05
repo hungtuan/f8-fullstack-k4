@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #666;
+}
+
+.container {
+  width: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+.nav-title,
+.title-tooltip {
+  user-select: none;
+}
+
+.nav-custom {
+  display: flex;
+  padding: 0;
+  margin: 30px auto;
+  justify-content: center;
+}
+
+.nav-custom li {
+  padding: 11px 16px;
+  border-width: 4px;
+  border-style: solid;
+  border-color: white white white white;
+  outline: 1px solid #e5e5e5;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-custom li:nth-child(6) {
+  width: 25%;
+}
+
+.nav-custom li i:not(.fa-solid.fa-house-chimney) {
+  margin-right: 10px;
+  color: #7b7b7b;
+}
+
+.nav-item {
+  position: relative;
+}
+/* Nav show */
+.nav-tooltip {
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  top: calc(100% + 20px);
+  left: -2%;
+  width: 250px;
+  padding: 0;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  cursor: pointer;
+}
+
+.nav-tooltip li i {
+  font-size: 14px;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  top: calc(100% + 1px);
+  left: -2%;
+  width: 250px;
+  height: 20px;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 20%;
+  border-width: 9px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+  display: inline-block;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+/*  */
+.fa-solid.fa-house-chimney {
+  color: #7b7b7b;
+}
+
+.fa-solid.fa-angle-down {
+  justify-content: center;
+  font-size: 10px;
+  padding-left: 10px;
+}
+
+/* Hover */
+.nav-custom li:not(:nth-child(6)):hover {
+  background-color: #2da5da;
+  color: #fefefe;
+}
+
+.nav-custom li:not(:nth-child(6)):hover .nav-title,
+.nav-custom li:not(:nth-child(6)):hover i:not(.fa-solid.fa-check) {
+  color: #fefefe;
+}
+
+.nav-item:hover .nav-tooltip,
+.nav-item:hover::after,
+.nav-item:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-tooltip li:hover .fa-solid.fa-check,
+.nav-tooltip li:hover span {
+  color: #fefefe;
+}
