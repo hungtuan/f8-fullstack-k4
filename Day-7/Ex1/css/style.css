@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@300;500;700&display=swap");
+
+@import url("../fonts/SFUTradeGothic-BoldCondensedTwenty.woff2");
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  font-family: "Asap", sans-serif;
+  color: #3f3424;
+}
+
+.container {
+  height: 500px;
+  background-position: center center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-image: url(https://cdn.houseviet.vn/images/project/23042023/ha-noi-melody-residences-cover.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.title {
+  margin-left: 200px;
+  width: 550px;
+  height: 190px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 4px;
+  padding: 10px 30px 0 30px;
+  position: relative;
+}
+
+h2 {
+  color: #bf4240;
+  font-weight: 600;
+}
+
+p {
+  color: #3f3424;
+  line-height: 0.5;
+  font-size: 14px;
+}
+
+.andress-detail span {
+  font-size: 15px;
+}
+
+.price {
+  position: absolute;
+  font-family: "SFU", sans-serif;
+  font-weight: 600;
+  color: white;
+  font-size: 20px;
+  background-color: #bf4240;
+  right: 60px;
+  bottom: -25px;
+  border-radius: 4px;
+  padding: 15px 20px;
+  text-transform: uppercase;
+  text-align: center;
+}
