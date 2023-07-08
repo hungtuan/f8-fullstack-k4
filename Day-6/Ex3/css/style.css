@@ -7,6 +7,7 @@ body {
   background-image: url(http://uiwebsoft.com/justlog/login-one/images/login-bg2.jpg);
   background-size: cover;
   background-position: top -200px left;
+  background-repeat: repeat;
 }
 
 * {
@@ -64,6 +65,7 @@ li {
   height: 30px;
   list-style: none;
   background-color: #db5c4f;
+  cursor: pointer;
 }
 
 li i {
@@ -106,6 +108,7 @@ p {
   box-shadow: 9px 9px 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   position: relative;
+  opacity: 0.9;
 }
 
 .form-title {
@@ -236,4 +239,12 @@ button:hover {
 
 .btn-form-title:hover {
   background-color: #ffffffcc;
+}
+
+.icon-center:hover {
+  background-color: #ffffffcc;
+}
+
+.form-title ul li:hover {
+  background-color: #db5c4f6e;
 }
