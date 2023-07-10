@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@300;500;700&display=swap");
+
+* {
+  font-family: "Asap", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+}
+
+.banner {
+  position: relative;
+  height: calc(100vh / 2.4);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(../images/tap-doan-vingroup-background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.7); /* Màu tối cho nền của banner */
+}
+
+.custom-banner {
+  position: absolute;
+  left: 15%;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+}
+
+img {
+  width: 200px;
+  height: 150px;
+  padding: 50px 30px 10px 30px;
+  vertical-align: middle;
+  border-radius: 3px 3px 0 0;
+  background-color: white;
+}
+
+.banner-title {
+  width: 350px;
+  margin-left: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: ; */
+  align-items: flex-start;
+  color: white;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.banner-subtitle {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner-subtitle span {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.banner-subtitle span strong {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Nav */
+
+.nav {
+  height: 50px;
+  padding: 0px 100px;
+  background-color: white;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.custom-nav {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  height: 100%;
+  list-style: none;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item:first-child {
+  color: red;
+}
+
+.line {
+  height: 3px;
+  border-radius: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: red;
+}
