@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&display=swap");
+
+* {
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #505867;
+}
+
+.container {
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* background-image: url(https://cdn.pixabay.com/photo/2022/12/04/15/10/game-7634718_640.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center; */
+}
+
+img {
+  width: 200px;
+  height: 120px;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.navbar .nav {
+  margin-left: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.navbar .nav .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navbar .nav .nav-item a {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.navbar .nav .nav-item a i {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.navbar .icon {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+/* Submenu */
+.sub-menu {
+  height: 400px;
+  display: flex;
+  position: absolute;
+
+  top: 100px;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  border-radius: 12px;
+
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.sub-menu .usage-styleguide-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #dee1e6;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-menu .usage-styleguide-menu .usage-list {
+  flex: 1;
+  display: flex;
+  gap: 120px;
+  margin-top: 20px;
+}
+
+.styleguide-menu .styleguide-list {
+  display: flex;
+  margin-top: 20px;
+  gap: 120px;
+}
+
+.usage-menu-left,
+.styleguide-menu-right,
+.usage-menu-right,
+.styleguide-menu-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.usage-menu {
+  flex: 1;
+  width: 100%;
+}
+
+.styleguide-menu {
+  flex: 1;
+  width: 100%;
+}
+
+.styleguide-menu .sub-menu-title {
+  flex: 1;
+}
+
+.sub-menu .elements-menu {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  margin-left: 35px;
+}
+
+.elements-list {
+  display: flex;
+}
+
+.sub-menu-title {
+  font-weight: 700;
+  color: #505867;
+}
+
+.elements-menu .elements-list {
+  display: flex;
+  gap: 150px;
+  margin-top: 20px;
+}
+
+.element-menu-left,
+.element-menu-center,
+.element-menu-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav .nav-item:hover a {
+  color: #878c96;
+}
+
+.nav-item:nth-child(5):hover .sub-menu a {
+  color: #505867;
+}
