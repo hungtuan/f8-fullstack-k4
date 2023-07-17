@@ -1,8 +1,138 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap");
+
+* {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
 .container {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.container .lists-item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px 20px;
+}
+
+.item {
+  /* overflow: hidden; */
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 35px;
+  z-index: 1;
+}
+
+.item:hover::before {
+  visibility: hidden;
+  content: "";
+  position: absolute;
+  display: block;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  z-index: -1;
+  transform: scale(1);
+  transition: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+.item::after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  background-color: rgba(172, 140, 125, 0.863);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.item > i {
+  transform: scale(1);
+  font-size: 38px;
+  color: #b38a79;
+  transition: all 0.3s ease;
+}
+
+.item h3 {
+  margin: 30px 0 10px;
+  font-size: 17px;
+  line-height: 1.2;
+  font-family: "Space Grotesk", sans-serif;
+  transition: all 0.5s ease;
+  transform: translateY(0);
+}
+
+.item p {
+  font-size: 13px;
+  transition: all 0.5s ease;
+  transform: translateY(0);
+}
+
+.item .tip {
+  z-index: 1;
+  font-size: 13px;
+  position: absolute;
+  text-decoration: none;
+  font-weight: 500;
+  color: white;
+  top: 100%;
+  transition: all 0.5s ease;
+  transform: translateY(0);
+}
+
+.item .tip i {
+  margin-left: 4px;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border: 1px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  color: white;
+  transition: all 0.5s ease;
+}
+
+.container .lists-item .item:hover {
+  background-image: url(https://cdn.pixabay.com/photo/2015/01/08/18/27/startup-593341_640.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.container .lists-item .item:hover i {
+  transform: scale(0);
+}
+
+.container .lists-item .item:hover h3,
+.container .lists-item .item:hover p,
+.container .lists-item .item:hover .tip {
+  transform: translateY(calc(-100% - 90%));
+}
+
+.container .lists-item .item .tip i:hover {
+  background-color: white;
+  color: rgba(172, 140, 125, 0.863);
+}
+
+.container .lists-item .item:hover .tip i {
+  transform: translateY(0);
+}
+
+.container .lists-item .item:hover::before {
+  transform: scale(0.9);
+  border: 1px solid #ccc;
+}
+
+.container .lists-item .item:hover::after {
+  visibility: visible;
 }
