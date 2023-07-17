@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  height: 100vh;
+  max-width: 1200px;
+  display: flex;
+  margin: 0px auto;
+}
+
+.container .image {
+  margin-left: 300px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.container .main-image {
+  /* margin-left: 400px; */
+  position: relative;
+  width: 270px;
+  height: 320px;
+  background-image: url(https://cdn.pixabay.com/photo/2017/01/14/10/56/people-1979261_1280.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.3);
+}
+
+.container .main-image .insite-image {
+  position: absolute;
+  width: 179px;
+  height: 295px;
+  z-index: 1;
+  top: 25%;
+  right: 70%;
+  background-image: url(https://cdn.pixabay.com/photo/2017/01/14/10/56/people-1979261_1280.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.3);
+}
+
+.container .main-image .insite-image .overlay {
+  position: absolute;
+  background-color: #425baf;
+  top: 50%;
+  left: 50%;
+  width: 93%;
+  height: 93%;
+  transform: translate(-50%, -50%);
+}
+
+.container .main-image .insite-image .overlay .title-image {
+  background-image: url(https://cdn.pixabay.com/photo/2017/01/14/10/56/people-1979261_1280.jpg);
+  background-repeat: no-repeat;
+  background-position: 30% 60%;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: 700;
+  font-size: 42px;
+  position: absolute;
+  right: 10%;
+  bottom: 13%;
+}
+
+.container .main-image .insite-image .overlay .subtitle-image {
+  position: absolute;
+  right: 10%;
+  bottom: 8%;
+  font-size: 11px;
+  color: #bdc5e4;
+}
+
+.container .stage {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.container .stage .stage-item {
+  display: flex;
+  gap: 15px;
+}
+
+.container .stage .stage-item .title-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 250px;
+  text-align: right;
+  gap: 10px;
+  transition: all 1s ease;
+}
+
+.container .stage .stage-item .title-stage h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+}
+
+.container .stage .stage-item .title-stage .paragraph {
+  font-size: 12px;
+}
+
+.container .stage .stage-item .title-stage .box-stage {
+  font-family: "Space Grotesk", sans-serif;
+  padding: 4px 10px;
+  background-color: #f3f3f3;
+  border-radius: 99px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform, text-align, align-items, background-color, color;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.container .stage .stage-item .dot {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 6px solid #ebf1f0;
+  top: 3%;
+}
+
+.container .stage .stage-item:not(:last-child) .dot:after {
+  content: "";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 0;
+  border-right: 2px solid #f4f4f6;
+  height: 100px;
+  top: calc(100% + 15px);
+  left: 50%;
+}
+
+.container .stage .dot i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #479e8f;
+  font-size: 9px;
+  /* transition: animation;
+  transition-duration: 1s;
+  transition-timing-function: ease; */
+  /* transition: all 1s ease; */
+}
+
+.container .stage .year {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  transition: transform;
+  transition-duration: 1s;
+  transition-timing-function: ease;
+  top: 6%;
+}
+
+.container .stage .stage-item:hover .title-stage {
+  transform: translateX(calc(100% + 50px));
+  text-align: left;
+  align-items: flex-start;
+}
+
+.container .stage .stage-item:hover .box-stage {
+  background-color: #a26f5a;
+  color: white;
+}
+
+.container .stage .stage-item:hover .dot i {
+  animation: zoomDot 1s infinite;
+}
+
+.container .stage .stage-item:hover .year {
+  transform: translateX(calc(-100% - 50px));
+}
+
+@keyframes zoomDot {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(2);
+  }
+}
