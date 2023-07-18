@@ -103,7 +103,7 @@ input ~ label {
   transition: 0.3s;
   z-index: 1;
   color: #aaa;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 textarea ~ label {
