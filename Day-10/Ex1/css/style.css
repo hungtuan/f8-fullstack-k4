@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  height: 100vh;
+}
+
+/* Title */
+.bg-title {
+  overflow: hidden;
+  z-index: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(49, 168, 247);
+}
+
+.title-container {
+  width: 90%;
+  height: inherit;
+  display: flex;
+  align-items: self-end;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  color: #f3ffff;
+}
+
+.title h2 {
+  font-size: 44px;
+}
+
+.paragraph {
+  font-weight: 300;
+}
+
+.paragraph-zoom {
+  font-size: 30px;
+}
+
+/* Nav drawer */
+.bar,
+.arrow {
+  padding: 15px 0 0 20px;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 34px;
+  color: rgb(49, 168, 247);
+}
+
+.arrow i {
+  visibility: hidden;
+  transition: transform 0.3s ease;
+}
+
+.bar i {
+  transition: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+.nav-drawer {
+  height: 90px;
+  width: 90px;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom-right-radius: 999px;
+  background-color: #fffeff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  animation: not-checked-zoom-bg 0.3s both;
+  transition: 0.3s;
+}
+
+.nav-drawer .nav {
+  visibility: hidden;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  gap: 25px;
+}
+
+.nav a .item {
+  display: flex;
+  align-items: center;
+  padding: 5px 50px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 700;
+  color: #31a8f7;
+  font-size: 18px;
+}
+
+input[type="checkbox"]:checked ~ .arrow i {
+  visibility: visible;
+  transform: rotate(180deg);
+}
+
+input[type="checkbox"]:checked ~ .bar i {
+  visibility: hidden;
+  transform: rotate(180deg) scale(0);
+}
+
+input[type="checkbox"]:checked ~ label ~ .nav-drawer {
+  animation: zoom-bg 0.5s ease-in-out both;
+}
+
+input[type="checkbox"]:checked ~ label ~ .nav-drawer .nav {
+  visibility: visible;
+}
+
+.nav-drawer .nav a:focus {
+  background-color: #cccccc;
+  color: rgb(39, 35, 35);
+}
+
+@keyframes zoom-bg {
+  50% {
+    width: 3000px;
+    height: 3000px;
+  }
+
+  100% {
+    height: 100%;
+    width: 100%;
+    border-bottom-right-radius: 0;
+  }
+}
+
+@keyframes not-checked-zoom-bg {
+  0% {
+    width: 3000px;
+    height: 3000px;
+  }
+}
