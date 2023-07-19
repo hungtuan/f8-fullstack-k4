@@ -118,8 +118,11 @@ textarea ~ label {
 }
 
 input:focus,
+input:valid {
+  border: 1px solid #9fbcf0;
+}
+
 textarea:focus,
-input:valid,
 textarea:valid {
   border: 1px solid #9fbcf0;
 }
@@ -134,7 +137,14 @@ input:valid ~ label {
   top: 5px;
   left: 20px;
   font-size: 12px;
-  transition: 0.3s;
+  transition: 0.5s;
+}
+
+.email:not(:placeholder-shown) ~ label {
+  top: 5px;
+  left: 20px;
+  font-size: 12px;
+  transition: 0.5s;
 }
 
 textarea:focus ~ label,

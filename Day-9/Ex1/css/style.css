@@ -193,6 +193,10 @@
   transform: translateX(calc(-100% - 50px));
 }
 
+.paragraph {
+  font-size: 14px;
+}
+
 @keyframes zoomDot {
   0% {
     transform: scale(0);

@@ -28,8 +28,7 @@
   z-index: 1;
 }
 
-.item:hover::before {
-  visibility: hidden;
+.item:before {
   content: "";
   position: absolute;
   display: block;
@@ -38,7 +37,7 @@
   border-radius: 2px;
   z-index: -1;
   transform: scale(1);
-  transition: transform;
+  transition: transform, border;
   transition-duration: 0.5s;
   transition-timing-function: ease;
 }
