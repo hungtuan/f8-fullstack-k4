@@ -101,7 +101,8 @@ body {
 }
 
 .letter {
-  bottom: -210px;
+  top: 10px
+  bottom: -200px;
   left: 35px;
   position: absolute;
   width: 330px;
@@ -115,6 +116,7 @@ body {
 
 .envelope:hover .letter {
   bottom: 0px;
+  top: 0px;
 }
 
 @keyframes letterUp {
