@@ -1338,6 +1338,7 @@ hr {
     max-width: 960px;
     flex-wrap: nowrap;
   }
+
   .navbar-header {
   }
 
@@ -1350,7 +1351,7 @@ hr {
   }
 
   .row {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .header-content .header-content-top {
