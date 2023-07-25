@@ -1,0 +1,46 @@
+@import "reset";
+@import "variables";
+@import "mixins";
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Sofia Sans", sans-serif;
+}
+
+input,
+button,
+textarea,
+select {
+  outline: none;
+  border: none;
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+b {
+  color: red;
+}
+
+$primaryColor: #202d2a;
+$fontFamily: "Courier New", Courier, monospace;
+$footerCopyright: ".copyright";
+$color: color;
+$fontSize: 20;
+.header {
+  $padding: 20px;
+  padding: 0 $padding;
+  color: $primaryColor;
+  font-family: $fontFamily;
+  #{$footerCopyright} {
+    text-align: center;
+    #{color}: green;
+    font-size: $fontSize + 0px;
+  }
+}

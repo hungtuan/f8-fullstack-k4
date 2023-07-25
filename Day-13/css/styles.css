@@ -155,4 +155,19 @@ a {
   text-decoration: none;
 }
 
+b {
+  color: red;
+}
+
+.header {
+  padding: 0 20px;
+  color: #202d2a;
+  font-family: "Courier New", Courier, monospace;
+}
+.header .copyright-20 {
+  text-align: center;
+  color: green;
+  font-size: 20%;
+}
+
 /*# sourceMappingURL=styles.css.map */

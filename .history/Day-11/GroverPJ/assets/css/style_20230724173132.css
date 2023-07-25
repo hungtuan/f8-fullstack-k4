@@ -1,0 +1,51 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+}
+
+input,
+button,
+textarea,
+select {
+  outline: none;
+  border: none;
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navbar-header {
+}
+.container {
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-header {
+}
+.navbar-collapse {
+  display: flex;
+
+  align-items: center;
+}
+.navbar-nav {
+}
+.nav-item {
+}
+.search-btn {
+}
+.nav-search-form {
+}
+.search-icon {
+}
+.nav-search-input {
+}
+.cart-icon {
+}
