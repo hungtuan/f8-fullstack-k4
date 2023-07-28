@@ -1,0 +1,29 @@
+@mixin active {
+  color: #3e3f5e;
+  background-color: #fff;
+  cursor: auto;
+}
+
+@mixin tabBorderRight {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+@mixin tabBorderLeft {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+@mixin customTypeInput {
+  background-color: #fff;
+  border: 1px solid #dedeea;
+  color: #3e3f5e;
+  transition: border-color 0.2s ease-in-out;
+}
+
+@mixin customTypeInputBorder {
+  width: 100%;
+  border-radius: 12px;
+  font-size: 1.6rem;
+  font-weight: 700;
+}

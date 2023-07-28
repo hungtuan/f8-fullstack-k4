@@ -12,10 +12,6 @@ body {
   line-height: 2.4rem;
 }
 
-.row {
-  justify-content: center;
-}
-
 input,
 button,
 textarea,
@@ -665,10 +661,6 @@ hr {
     text-align: left;
   }
 
-  .row {
-    justify-content: flex-start;
-  }
-
   .header-content .header-content-top {
     margin: 0 0 20px 0;
   }
@@ -714,11 +706,6 @@ hr {
   .header-btn {
     font-size: 1.4rem;
     width: 100%;
-  }
-
-  .row {
-    justify-content: space-evenly;
-    align-items: center;
   }
 
   .header-btn .header-now-btn {
@@ -905,10 +892,6 @@ hr {
 
   .header-content {
     text-align: left;
-  }
-
-  .row {
-    justify-content: flex-start;
   }
 
   .header-content .header-content-top {
@@ -1116,10 +1099,6 @@ hr {
   .footer-section-condition {
     justify-content: center;
   }
-
-  .row {
-    justify-content: center;
-  }
 }
 
 /* Ipad/Mobile L */
@@ -1146,10 +1125,6 @@ hr {
 
   .header-content {
     text-align: left;
-  }
-
-  .row {
-    justify-content: flex-start;
   }
 
   .header-content .header-content-top {
@@ -1348,10 +1323,6 @@ hr {
 
   .header-content {
     text-align: left;
-  }
-
-  .row {
-    justify-content: flex-start;
   }
 
   .header-content .header-content-top {

@@ -1,0 +1,497 @@
+@import "reset";
+@import "grid.scss";
+@import "variables";
+@import "mixins";
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Rajdhani", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+label {
+  display: block;
+  margin: 0;
+  color: #3e3f5e;
+}
+
+input,
+button,
+textarea,
+select {
+  outline: none;
+  border: none;
+  font-family: inherit;
+}
+
+svg {
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+}
+
+svg {
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+/* Landing Content*/
+
+/* Ẩn input[type="radio"] */
+input[type="radio"],
+input[type="checkbox"] {
+  display: none;
+}
+/* Định nghĩa hiệu ứng cho label được chọn */
+#login:checked ~ .landing__content__tab .landing__content__tab__login {
+  @include active;
+}
+#register:checked ~ .landing__content__tab .landing__content__tab__register {
+  @include active;
+}
+
+.form-row {
+  width: 100%;
+}
+
+.form-row + .form-row {
+  margin-top: 28px;
+}
+
+input[type="password"],
+input[type="text"] {
+  height: 54px;
+  padding: 0 18px;
+}
+
+input[type="password"]:focus,
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #615dfa;
+}
+
+input[type="password"],
+input[type="text"],
+select,
+textarea {
+  @include customTypeInput;
+}
+
+button,
+input[type="password"],
+input[type="text"],
+select,
+textarea {
+  @include customTypeInputBorder;
+}
+
+.landing {
+  width: 100%;
+  height: 100%;
+  background: url(../images/landing-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .landing__overlay--white {
+    width: 64%;
+    height: 140%;
+    border-radius: 50%;
+    background: url(../images/dot-texture.png) repeat 0 0 #fff;
+    position: absolute;
+    top: -20%;
+    right: -32%;
+    pointer-events: none;
+  }
+
+  .landing__content {
+    width: 584px;
+    position: absolute;
+    top: 16%;
+    left: 6%;
+    text-align: center;
+
+    .landing__content__logo {
+      display: flex;
+      justify-content: center;
+
+      .landing__content__logo--vikinger {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    .landing__content__welcome {
+      margin-top: 0px;
+      font-weight: 500;
+      font-size: 2.4rem;
+      color: $font-color;
+      text-transform: uppercase;
+    }
+
+    .landing__content__title {
+      font-weight: 900;
+      font-size: 10.4rem;
+      color: $font-color;
+      text-transform: uppercase;
+    }
+
+    .landing__content__text {
+      width: 384px;
+      margin: 10px auto 0;
+      font-weight: 500;
+      font-size: 1.8rem;
+      color: $font-color;
+    }
+
+    .landing__content__tab {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .landing__content__tab__login {
+        @include tabBorderLeft;
+      }
+
+      .landing__content__tab__register {
+        @include tabBorderRight;
+      }
+
+      .landing__content__tab__login,
+      .landing__content__tab__register {
+        width: 180px;
+        height: 54px;
+        border: 1px solid #fff;
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 54px;
+        text-align: center;
+      }
+    }
+  }
+
+  .landing__form {
+    width: 484px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 10%;
+
+    .landing__form__login {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .landing__form__login__rocket {
+        position: absolute;
+        top: -68px;
+        left: -80px;
+      }
+
+      .landing__form__login__title {
+        font-family: "Rajdhani", sans-serif;
+        font-size: 2.6rem;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .form__login__inside {
+        margin-top: 76px;
+        .form__login__inside__item {
+          width: 100%;
+          .form__login__inside__input {
+            position: relative;
+          }
+        }
+      }
+    }
+
+    .landing__form__login,
+    .landing__form__register {
+      width: 484px;
+      padding: 64px;
+      border-radius: 12px;
+      background-color: #fff;
+      box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
+    }
+  }
+}
+
+input[type="password"] ~ label,
+input[type="text"] ~ label,
+select ~ label,
+textarea ~ label {
+  color: #adafca;
+  font-size: 1.6rem;
+  font-weight: 600;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+input[type="password"]:focus ~ label,
+input[type="text"]:focus ~ label,
+select:focus ~ label,
+textarea:focus ~ label {
+  background-color: #fff;
+  padding: 0 6px;
+  position: absolute;
+  top: -8px;
+  font-size: 1.2rem;
+}
+
+input[type="text"]:not(:placeholder-shown) ~ label {
+  background-color: #fff;
+  padding: 0 6px;
+  position: absolute;
+  top: -8px;
+  font-size: 1.2rem;
+}
+
+.form__login__inside .form-row.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.landing
+  .landing__form
+  .landing__form__login
+  .form__login__inside
+  .form-row.space-between
+  .form__login__inside__item {
+  width: auto;
+}
+
+.form__login__inside__checkbox--wrap {
+  position: relative;
+}
+
+.form__login__inside__checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #dedeea;
+  border-radius: 6px;
+  background-color: #fff;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.form__login__inside__checkbox .form__login__inside__checkbox__icon--cross {
+  fill: transparent;
+  transition: fill 0.2s ease-in-out;
+}
+
+.form__login__inside__checkbox--wrap label {
+  padding-left: 34px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form__login__inside__link {
+  color: #adafca;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+a:hover {
+  color: #00c7d9;
+  text-decoration: none;
+}
+
+.form__login__inside__checkbox--wrap
+  input[type="checkbox"]:checked
+  ~ .form__login__inside__checkbox {
+  background-color: #23d2e2;
+  border-color: #23d2e2;
+}
+
+.form__login__inside__checkbox--wrap
+  input[type="checkbox"]:checked
+  ~ .form__login__inside__checkbox
+  .form__login__inside__checkbox__icon--cross {
+  fill: #fff;
+}
+
+.form__login__inside__item_btn {
+  display: inline-block;
+  height: 54px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background-color: #615dfa;
+  box-shadow: 4px 7px 12px 0 rgba(97, 93, 250, 0.2);
+}
+
+.landing__form__login__lined_text {
+  margin-top: 40px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+}
+
+.landing__form__login__links {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.landing__form__login__links .link {
+  margin-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.landing__form__login__links .link:last-child {
+  margin-right: 0;
+}
+
+.landing__form__login__links--facebook {
+  background-color: #3763d2;
+}
+
+.landing__form__login__links--twitter {
+  background-color: #1abcff;
+}
+
+.landing__form__login__links--twitch {
+  background-color: #7b5dfa;
+}
+
+.landing__form__login__links--youtube {
+  background-color: #fd434f;
+}
+
+.fa-brands.fa-square-facebook,
+.fa-brands.fa-twitter,
+.fa-brands.fa-twitch,
+.fa-brands.fa-youtube {
+  color: #fff;
+}
+
+// Responsive
+@media screen and (min-width: 2560px) {
+  .landing .landing__form .landing__form__login {
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .landing__overlay--white {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .landing__overlay--white {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1365px) {
+  .landing {
+    padding: 80px 0 100px;
+    position: static;
+  }
+
+  .landing .landing__content .landing__content__text {
+    display: none;
+  }
+
+  .landing .landing__content {
+    width: 100%;
+    position: static;
+  }
+
+  .landing .landing__form .landing__form__login .landing__form__login__rocket {
+    display: none;
+  }
+
+  .landing .landing__form {
+    width: 100%;
+    margin-top: 80px;
+    position: static;
+  }
+
+  .landing .landing__form .landing__form__login {
+    margin: 0 auto;
+    position: static;
+    transform: translate(0, 0);
+  }
+
+  .landing .landing__form .landing__form__login:first-child,
+  .landing .landing__form .landing__form__login:last-child {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 960px) {
+}
+
+@media screen and (max-width: 680px) {
+  .landing .landing__content .landing__content__welcome {
+    margin-top: 30x;
+  }
+  .landing .landing__content .landing__content__title {
+    font-size: 6rem;
+    position: relative;
+    top: -20px;
+  }
+
+  .landing .landing__content .landing__content__tab {
+    width: 90%;
+    margin: 0 auto 0 auto;
+  }
+
+  .landing .landing__form .landing__form__login {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+}

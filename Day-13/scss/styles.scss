@@ -45,3 +45,106 @@ $fontSize: 20;
     font-size: #{$fontSize + 0%};
   }
 }
+
+// $width: 20;
+// .w-#{$width} {
+//   @if ($width > 0 and $width <=100) {
+//     width: #{$width + 0%};
+//   } @else if($width <=0) {
+//     width: 0;
+//   } @else {
+//     width: 100%;
+//   }
+// }
+
+// .col-md-5
+// $prefix: col;
+// $breakpoint: md;
+// $number: 5;
+// $selector: #{"." + $prefix + "-" + $breakpoint + "-" + $number};
+// @if ($breakpoint != "") {
+//   $selector: #{"." + $prefix + "-" + $breakpoint + "-" + $number};
+// }
+
+// #{$selector} {
+//   width: 50%;
+// }
+// .box {
+//   padding: 30px 0;
+//   border: 1px solid red;
+// }
+
+// .posts {
+//   background: green;
+//   @extend .box;
+// }
+
+// .products {
+//   background: gray;
+//   @extend .box;
+// }
+
+// .menu {
+//   li {
+//     a {
+//       color: green;
+//       &.active {
+//         color: green;
+//       }
+//       &:hover {
+//         @extend .active;
+//         color: red;
+//       }
+//     }
+//   }
+// }
+
+// %section-base {
+//   padding: 30px 0;
+//   border: 1px solid red;
+// }
+
+// .post {
+//   @extend %section-base;
+// }
+
+// .service {
+//   @extend %section-base;
+// }
+
+@mixin section-base {
+  padding: 30px 0;
+  border: 1px solid red;
+}
+
+@mixin column {
+  .col {
+    width: 50%;
+  }
+}
+
+@mixin green {
+  color: green;
+}
+
+@mixin red {
+  @include green;
+  color: red;
+}
+
+@mixin center($width, $spacer: 0) {
+  width: $width;
+  margin: $spacer auto;
+}
+
+.products {
+  background: green;
+  @include section-base;
+  @include red;
+}
+
+@include column;
+
+.post {
+  @include center(20px, 0px);
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Embed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Titillium+Web:wght@400;600;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>Vikinger | Home</title>
+  </head>
+  <body>
+    <!-- Landing -->
+    <div class="landing">
+      <!-- Overley white -->
+      <div class="landing__overlay--white"></div>
+      <!-- Landing Content -->
+      <div class="landing__content">
+        <div class="landing__content__logo">
+          <img
+            class="landing__content__logo--vikinger"
+            src="./images/vikinger-logo vector.svg"
+            alt="logo vikinger"
+          />
+        </div>
+        <h2 class="landing__content__welcome">welcome to</h2>
+        <h1 class="landing__content__title">Vikinger</h1>
+        <p class="landing__content__text">
+          The next generation social network & community! Connect with your
+          friends and play with our quests and badges gamification system!
+        </p>
+        <!-- Tab Switch -->
+        <input type="radio" id="login" name="auth-type" checked />
+        <input type="radio" id="register" name="auth-type" />
+        <div class="landing__content__tab">
+          <label class="landing__content__tab__login" for="login">Login</label>
+          <label class="landing__content__tab__register" for="register"
+            >Register</label
+          >
+        </div>
+      </div>
+      <!-- End Landing Content -->
+
+      <!-- Landing Form -->
+      <div class="landing__form">
+        <!-- Form Login -->
+        <div class="landing__form__login">
+          <img
+            class="landing__form__login__rocket"
+            src="https://odindesignthemes.com/vikinger/img/landing/rocket.png"
+            alt="rocket"
+          />
+
+          <h2 class="landing__form__login__title">Account Login</h2>
+          <form class="form__login__inside">
+            <!-- Form Row -->
+            <div class="form-row">
+              <!-- Form Item -->
+              <div class="form__login__inside__item">
+                <!-- Form Input -->
+                <div class="form__login__inside__input">
+                  <input
+                    type="text"
+                    id="login-username"
+                    name="username"
+                    placeholder=""
+                  />
+                  <label for="login-username">Username or Email</label>
+                </div>
+                <!-- End Form Input -->
+              </div>
+              <!-- End Form Item -->
+            </div>
+            <!-- End Form Row -->
+
+            <!-- Form Row -->
+            <div class="form-row">
+              <!-- Form Item -->
+              <div class="form__login__inside__item">
+                <!-- Form Input -->
+                <div class="form__login__inside__input">
+                  <input type="password" id="login-password" name="password" />
+                  <label for="login-password">Password</label>
+                </div>
+                <!-- End Form Input -->
+              </div>
+              <!-- End Form Item-->
+            </div>
+            <!-- End Form Row -->
+
+            <!-- Form Row  -->
+            <div class="form-row space-between">
+              <!-- Form Item -->
+              <div class="form__login__inside__item">
+                <!-- Checkbox wrap -->
+                <div class="form__login__inside__checkbox--wrap">
+                  <input
+                    type="checkbox"
+                    id="login-remember"
+                    name="login_remember"
+                    checked=""
+                  />
+
+                  <!-- Checkbox-->
+                  <div class="form__login__inside__checkbox">
+                    <!-- Icon Cross -->
+
+                    <svg
+                      class="form__login__inside__checkbox__icon--cross"
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1em"
+                      viewBox="0 0 384 512"
+                    >
+                      <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                      <path
+                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                      />
+                    </svg>
+                    <!-- End Icon Cross -->
+                  </div>
+                  <!-- End Checkbox -->
+                  <label for="login-remember">Remember Me</label>
+                </div>
+              </div>
+
+              <div class="form__login__inside__item">
+                <a class="form__login__inside__link" href="#"
+                  >Forgot Password?</a
+                >
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form__login__inside__item">
+                <!-- Button -->
+                <button class="form__login__inside__item_btn" type="submit">
+                  Login to your Account!
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!--Bottom Text -->
+          <p class="landing__form__login__lined_text">
+            Login with your Social Account
+          </p>
+
+          <!-- Links -->
+          <div class="landing__form__login__links">
+            <a class="landing__form__login__links--facebook link" href="#"
+              ><i class="fa-brands fa-square-facebook"></i
+            ></a>
+            <a class="landing__form__login__links--twitter link" href="#"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a class="landing__form__login__links--twitch link" href="#"
+              ><i class="fa-brands fa-twitch"></i
+            ></a>
+            <a class="landing__form__login__links--youtube link" href="#"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+        <!-- End Form Login -->
+
+        <!-- Form Register -->
+        <div class="landing__form_register"></div>
+        <!-- End Form Register -->
+      </div>
+      <!--End Landing Form -->
+    </div>
+    <!-- End Landing -->
+  </body>
+</html>
