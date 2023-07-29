@@ -11,6 +11,12 @@ body {
   font-family: "Sofia Sans", sans-serif;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 input,
 button,
 textarea,
@@ -23,3 +29,28 @@ select {
 a {
   text-decoration: none;
 }
+
+section {
+  background: orange;
+}
+
+/* PC breakpoint */
+// @media screen and (min-width: 992px) {
+//   .pc {
+//     display: block;
+//   }
+// }
+
+/* Tablet breakpoint */
+// @media screen and (min-width: 768px) and (max-width: 991.98px) {
+//   .tablet {
+//     display: block;
+//   }
+// }
+
+/* Mobile breakpoint */
+// @media screen and (max-width: 767.98px) {
+//   .mobile {
+//     display: block;
+//   }
+// }

@@ -10685,16 +10685,24 @@ input[type=checkbox] {
 }
 
 /* Định nghĩa hiệu ứng cho label được chọn */
-#login:checked ~ .landing__content__tab .landing__content__tab__login {
+#login:checked ~ .landing__content .landing__content__tab .landing__content__tab__login {
   color: #3e3f5e;
   background-color: #fff;
   cursor: auto;
 }
 
-#register:checked ~ .landing__content__tab .landing__content__tab__register {
+#register:checked ~ .landing__content .landing__content__tab .landing__content__tab__register {
   color: #3e3f5e;
   background-color: #fff;
   cursor: auto;
+}
+
+#login:checked ~ .landing__form .landing__form__login {
+  visibility: visible;
+}
+
+#register:checked ~ .landing__form .landing__form__register {
+  visibility: visible !important;
 }
 
 .form-row {
@@ -10706,20 +10714,22 @@ input[type=checkbox] {
 }
 
 input[type=password],
-input[type=text] {
+input[type=text],
+input[type=email] {
   height: 54px;
   padding: 0 18px;
 }
 
 input[type=password]:focus,
 input[type=text]:focus,
-select:focus,
+input[type=email]:focus select:focus,
 textarea:focus {
   border-color: #615dfa;
 }
 
 input[type=password],
 input[type=text],
+input[type=email],
 select,
 textarea {
   background-color: #fff;
@@ -10731,6 +10741,7 @@ textarea {
 button,
 input[type=password],
 input[type=text],
+input[type=email],
 select,
 textarea {
   width: 100%;
@@ -10763,7 +10774,7 @@ textarea {
   width: 584px;
   position: absolute;
   top: 16%;
-  left: 6%;
+  left: 13%;
   text-align: center;
 }
 .landing .landing__content .landing__content__logo {
@@ -10818,19 +10829,30 @@ textarea {
   font-weight: 700;
   line-height: 54px;
   text-align: center;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .landing .landing__form {
   width: 484px;
   height: 100%;
   position: absolute;
   top: 0;
-  right: 10%;
+  right: 13%;
 }
 .landing .landing__form .landing__form__login {
-  position: relative;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  transition-property: transform, opacity;
+  visibility: hidden;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 484px;
+  padding: 64px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
 }
 .landing .landing__form .landing__form__login .landing__form__login__rocket {
   position: absolute;
@@ -10852,41 +10874,33 @@ textarea {
 .landing .landing__form .landing__form__login .form__login__inside .form__login__inside__item .form__login__inside__input {
   position: relative;
 }
-.landing .landing__form .landing__form__login,
-.landing .landing__form .landing__form__register {
-  width: 484px;
-  padding: 64px;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
-}
 
 input[type=password] ~ label,
-input[type=text] ~ label,
-select ~ label,
-textarea ~ label {
+input[type=email] ~ label,
+input[type=text] ~ label {
   color: #adafca;
   font-size: 1.6rem;
   font-weight: 600;
   position: absolute;
   top: 15px;
   left: 20px;
-  transition: all 0.3s ease-in-out;
   pointer-events: none;
 }
 
 input[type=password]:focus ~ label,
 input[type=text]:focus ~ label,
-select:focus ~ label,
-textarea:focus ~ label {
+input[type=email]:focus ~ label {
   background-color: #fff;
   padding: 0 6px;
   position: absolute;
   top: -8px;
   font-size: 1.2rem;
+  transition: all 0.3s ease-in-out;
 }
 
-input[type=text]:not(:placeholder-shown) ~ label {
+input[type=email]:not(:placeholder-shown) ~ label,
+input[type=text]:not(:placeholder-shown) ~ label,
+input[type=password]:not(:placeholder-shown) ~ label {
   background-color: #fff;
   padding: 0 6px;
   position: absolute;
@@ -10904,11 +10918,11 @@ input[type=text]:not(:placeholder-shown) ~ label {
   width: auto;
 }
 
-.form__login__inside__checkbox--wrap {
+.form__login__inside__checkbox--wrap, .form__register__inside__checkbox--wrap {
   position: relative;
 }
 
-.form__login__inside__checkbox {
+.form__login__inside__checkbox, .form__register__inside__checkbox {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10924,12 +10938,12 @@ input[type=text]:not(:placeholder-shown) ~ label {
   transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.form__login__inside__checkbox .form__login__inside__checkbox__icon--cross {
+.form__login__inside__checkbox .form__login__inside__checkbox__icon--cross, .form__login__inside__checkbox .form__register__inside__checkbox__icon--cross, .form__register__inside__checkbox .form__login__inside__checkbox__icon--cross, .form__register__inside__checkbox .form__register__inside__checkbox__icon--cross {
   fill: transparent;
   transition: fill 0.2s ease-in-out;
 }
 
-.form__login__inside__checkbox--wrap label {
+.form__login__inside__checkbox--wrap label, .form__register__inside__checkbox--wrap label {
   padding-left: 34px;
   font-size: 1.4rem;
   font-weight: 700;
@@ -10947,16 +10961,18 @@ a:hover {
   text-decoration: none;
 }
 
-.form__login__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__login__inside__checkbox {
+.form__login__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__login__inside__checkbox, .form__login__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__register__inside__checkbox, .form__register__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__login__inside__checkbox,
+.form__register__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__register__inside__checkbox {
   background-color: #23d2e2;
   border-color: #23d2e2;
 }
 
-.form__login__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__login__inside__checkbox .form__login__inside__checkbox__icon--cross {
+.form__login__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__login__inside__checkbox .form__login__inside__checkbox__icon--cross, .form__login__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__login__inside__checkbox .form__register__inside__checkbox__icon--cross, .form__login__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__register__inside__checkbox .form__login__inside__checkbox__icon--cross, .form__login__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__register__inside__checkbox .form__register__inside__checkbox__icon--cross, .form__register__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__login__inside__checkbox .form__login__inside__checkbox__icon--cross, .form__register__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__login__inside__checkbox .form__register__inside__checkbox__icon--cross, .form__register__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__register__inside__checkbox .form__login__inside__checkbox__icon--cross,
+.form__register__inside__checkbox--wrap input[type=checkbox]:checked ~ .form__register__inside__checkbox .form__register__inside__checkbox__icon--cross {
   fill: #fff;
 }
 
-.form__login__inside__item_btn {
+.form__login__inside__item_btn, .form__register__inside__item_btn {
   display: inline-block;
   height: 54px;
   border-radius: 10px;
@@ -10971,7 +10987,7 @@ a:hover {
   box-shadow: 4px 7px 12px 0 rgba(97, 93, 250, 0.2);
 }
 
-.landing__form__login__lined_text {
+.landing__form__login__lined_text, .landing__form__register__lined_text {
   margin-top: 40px;
   font-size: 1.4rem;
   font-weight: 700;
@@ -11024,19 +11040,103 @@ a:hover {
   color: #fff;
 }
 
-@media screen and (min-width: 2560px) {
+.landing__form__register {
+  transition-duration: 0.6s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  transition-property: transform, opacity;
+  visibility: hidden;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 484px;
+  padding: 64px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
+}
+
+.landing__form__register__rocket {
+  position: absolute;
+  top: -14px;
+  left: -80px;
+}
+
+.landing__form__register__title {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.6rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.form__register__inside {
+  margin-top: 76px;
+}
+
+.form__register__inside__item {
+  width: 100%;
+}
+
+.form__register__inside__input {
+  position: relative;
+}
+
+.form__register__inside__item_btn {
+  background-color: #23d2e2;
+}
+
+.landing__form__register__lined_text {
+  margin-top: 30px;
+  text-align: left;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 1501px) and (max-width: 2560px) {
   .landing .landing__form .landing__form__login {
-    left: 0;
+    transform: translate(-25%, -50%);
+    opacity: 0;
+  }
+  .landing .landing__form .landing__form__register {
+    transform: translate(-25%, -50%);
+    opacity: 0;
+  }
+  #login:checked ~ .landing__form .landing__form__login {
+    display: block;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  #register:checked ~ .landing__form .landing__form__register {
+    visibility: visible;
+    transform: translate(-50%, -50%);
+    opacity: 1;
   }
 }
 @media screen and (max-width: 1500px) {
   .landing__overlay--white {
     display: none;
   }
-}
-@media screen and (max-width: 1500px) {
-  .landing__overlay--white {
-    display: none;
+  .landing .landing__content {
+    left: 6%;
+  }
+  .landing .landing__form .landing__form__login {
+    transform: translate(-25%, -50%);
+    opacity: 0;
+  }
+  .landing .landing__form .landing__form__register {
+    transform: translate(-25%, -50%);
+    opacity: 0;
+  }
+  #login:checked ~ .landing__form .landing__form__login {
+    visibility: visible;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  #register:checked ~ .landing__form .landing__form__register {
+    visibility: visible;
+    transform: translate(-50%, -50%);
+    opacity: 1;
   }
 }
 @media screen and (max-width: 1365px) {
@@ -11059,14 +11159,37 @@ a:hover {
     margin-top: 80px;
     position: static;
   }
+  .landing .landing__form .landing__form__login:first-child,
+  .landing .landing__form .landing__form__login:last-child {
+    margin-top: 0;
+  }
   .landing .landing__form .landing__form__login {
+    display: none;
     margin: 0 auto;
     position: static;
     transform: translate(0, 0);
   }
-  .landing .landing__form .landing__form__login:first-child,
-  .landing .landing__form .landing__form__login:last-child {
+  .landing .landing__form .landing__form__register {
+    margin: 0 auto;
+    position: static;
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  .landing__form__register__rocket {
+    display: none;
+  }
+  .landing .landing__form .landing__form__register:first-child,
+  .landing .landing__form .landing__form__register:last-child {
     margin-top: 0;
+  }
+  #login:checked ~ .landing__form .landing__form__login {
+    visibility: visible;
+    transform: translate(0, 0);
+    display: block;
+  }
+  #register:checked ~ .landing__form .landing__form__register {
+    visibility: visible;
+    transform: translate(0, 0);
   }
 }
 @media screen and (max-width: 680px) {
@@ -11086,6 +11209,23 @@ a:hover {
     width: 90%;
     margin: 0 auto;
     padding: 40px 32px;
+  }
+  .landing .landing__form .landing__form__register {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .landing__form__login {
+    display: none;
+  }
+  #login:checked ~ .landing__form .landing__form__login {
+    visibility: visible;
+    display: block;
+  }
+  #register:checked ~ .landing__form .landing__form__register {
+    visibility: visible !important;
   }
 }
 
