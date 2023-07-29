@@ -10688,13 +10688,11 @@ input[type=checkbox] {
 #login:checked ~ .landing__content .landing__content__tab .landing__content__tab__login {
   color: #3e3f5e;
   background-color: #fff;
-  cursor: auto;
 }
 
 #register:checked ~ .landing__content .landing__content__tab .landing__content__tab__register {
   color: #3e3f5e;
   background-color: #fff;
-  cursor: auto;
 }
 
 #login:checked ~ .landing__form .landing__form__login {
@@ -10821,6 +10819,7 @@ textarea {
 }
 .landing .landing__content .landing__content__tab .landing__content__tab__login,
 .landing .landing__content .landing__content__tab .landing__content__tab__register {
+  cursor: pointer;
   width: 180px;
   height: 54px;
   border: 1px solid #fff;
@@ -10884,6 +10883,7 @@ input[type=text] ~ label {
   position: absolute;
   top: 15px;
   left: 20px;
+  transition: all 0.3s ease-in-out;
   pointer-events: none;
 }
 

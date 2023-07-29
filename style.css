@@ -20,12 +20,12 @@
 .container p {
   font-size: 18px;
   color: #666;
-  margin-bottom: 9px;
+  margin-bottom: 12px;
 }
 
 /* Apply styles to the link inside the container */
 .container a {
-  display: block;
+  /* display: block; */
   font-size: 18px;
   color: #fff;
   background-color: #007bff;
