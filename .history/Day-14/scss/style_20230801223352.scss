@@ -1,0 +1,25 @@
+@import "parts/variables";
+@import "parts/reset";
+@import "parts/mixins";
+@import "parts/base";
+
+// import layout-home
+@import "layouts/home/header";
+@import "layouts/home/hero";
+@import "layouts/home/stats";
+@import "layouts/home/products";
+@import "layouts/home/news";
+@import "layouts/home/qualities";
+@import "layouts/home/services";
+@import "layouts/home/form";
+@import "layouts/home/footer";
+
+// import layout-about
+@import "layouts/about/title";
+@import "layouts/about/main-about";
+@import "layouts/about/main-product-about";
+@import "layouts/about/about-mission";
+
+// import layout-product
+@import "layouts/product/products";
+@import "layouts/product/feature";

@@ -1,0 +1,12 @@
+@mixin display($name: "") {
+    $prefix: "d-";
+    @if ($name!= "") {
+        $prefix: $prefix + $name + "-";
+    }
+    .#{$prefix}none {
+        display: none;
+    }
+    .#{$prefix}block {
+        display: block;
+    }
+}

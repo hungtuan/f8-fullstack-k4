@@ -1,0 +1,277 @@
+.stats {
+    margin-top: 120px;
+    .stats-header {
+        text-align: center;
+        .heading {
+            max-width: 670px;
+        }
+        .desc {
+            max-width: 772px;
+            margin-top: 30px;
+        }
+    }
+    .stats-body {
+        .row {
+            --column-space: 52px;
+            margin-top: 171px;
+            .col-4:first-of-type,
+            .col-4:last-of-type {
+                position: relative;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    display: block;
+                    width: 282px;
+                    height: 282px;
+                    border-radius: 50%;
+                    background: #dcffca;
+                    z-index: -1;
+                }
+            }
+            .col-4:first-of-type {
+                &::before {
+                    top: 0;
+                    left: 0;
+                    transform: translate(-40%, -48%);
+                }
+            }
+            .col-4:last-of-type {
+                &::before {
+                    right: 10px;
+                    bottom: 0px;
+                    background: #ffd5bd;
+                    transform: translate(43%, 62%);
+                }
+            }
+        }
+        .item {
+            border-radius: 4px;
+            background: #fff;
+            width: 353px;
+            height: 405px;
+
+            cursor: pointer;
+            transition: 0.25s ease-in-out;
+            padding: 40px 0 71px 40px;
+            box-shadow: -7px 10px 87px 0px rgba(54, 54, 54, 0.12);
+            .item-img {
+                $height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: $height;
+                height: $height;
+                border-radius: 12px;
+                transition: 0.25s ease-in-out;
+                background: #fff0e7;
+            }
+            .stats-number {
+                display: inline-block;
+                margin-top: 33px;
+                font-size: 5.2rem;
+                font-weight: 800;
+            }
+            .stats-desc {
+                height: 74px;
+                margin-top: 30px;
+                font-size: 2.4rem;
+                max-width: 267px;
+                line-height: 1.54;
+            }
+            &:hover {
+                transform: scale(1.15);
+                .item-img {
+                    background: #f2ffec;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1900px) {
+    .stats {
+        .stats-body {
+            .item {
+                width: 350px;
+                height: 405px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 1499px) {
+    .stats {
+        .stats-body {
+            .item {
+                width: 300px;
+                height: 405px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 1399px) {
+    .stats {
+        .stats-body {
+            .col-4 {
+                &::before {
+                    width: 220px !important;
+                    height: 220px !important;
+                }
+            }
+            .item {
+                width: 260px;
+                height: 400px;
+
+                .stats {
+                    &-number {
+                        font-size: 4rem;
+                    }
+                    &-desc {
+                        font-size: 1.9rem;
+                        max-width: 90%;
+                        margin-top: 45px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1199px) {
+    .stats {
+        .stats-body {
+            .col-4 {
+                &::before {
+                    width: 200px !important;
+                    height: 200px !important;
+                }
+            }
+            .item {
+                width: 220px;
+                height: 420px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 991px) {
+    .stats {
+        .stats-body {
+            .row {
+                --column-space: 20px;
+            }
+
+            .col-4 {
+                &::before {
+                    width: 120px !important;
+                    height: 120px !important;
+                }
+            }
+            .item {
+                width: 210px;
+                height: 400px;
+                .stats {
+                    &-number {
+                        font-size: 3.5rem;
+                    }
+                    &-desc {
+                        font-size: 1.7rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+    .stats {
+        .stats-header {
+            .heading {
+                font-size: 3.4rem;
+            }
+            .desc {
+                font-size: 1.4rem;
+                margin-top: 30px;
+            }
+        }
+        .stats-body {
+            .row {
+                --column-space: 0px;
+            }
+
+            .col-4 {
+                &::before {
+                    width: 200px !important;
+                    height: 200px !important;
+                }
+                margin-bottom: 50px;
+            }
+            .col-4:first-of-type {
+                &::before {
+                    left: 40% !important;
+                }
+            }
+            .col-4:last-of-type {
+                &::before {
+                    right: 40% !important;
+                }
+            }
+            .item {
+                background: linear-gradient(
+                    90deg,
+                    rgba(255, 213, 189, 1) 2%,
+                    rgba(220, 255, 202, 1) 96%
+                );
+                margin: auto;
+                text-align: center;
+                width: 480px;
+                height: 250px;
+                padding: 20px;
+                .stats {
+                    &-number {
+                        margin-top: 0px;
+                        font-size: 3.8rem;
+                    }
+                    &-desc {
+                        margin: 0 auto;
+
+                        font-size: 1.7rem;
+                        max-width: 90%;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 575px) {
+    .stats {
+        .stats-header {
+            .heading {
+                font-size: 3.4rem;
+            }
+        }
+        .stats-body {
+            .item {
+                width: 380px;
+                height: 250px;
+                .stats {
+                    &-number {
+                        margin-top: 10px;
+                    }
+                    &-desc {
+                        font-size: 1.7rem;
+                        max-width: 90%;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 430px) {
+    .stats {
+        .stats-body {
+            .item {
+                width: 300px;
+                height: 250px;
+            }
+        }
+    }
+}
