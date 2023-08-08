@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chess {
+  border: 1px solid black;
+}
+
+.container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.multiplicationtable {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  /* align-items: stretch; */
+  border: 1px solid gray;
+  margin: 30px 6px 12px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.container2 .multiplicationtable div {
+  border-width: 1px;
+  border-color: transparent gray transparent gray;
+  border-style: solid;
+}
+
+.container2 .multiplicationtable div > span:not(:last-child) {
+  border-width: 1px;
+  border-color: transparent transparent gray transparent;
+  border-style: dashed;
+}
