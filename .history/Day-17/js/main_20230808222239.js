@@ -150,17 +150,16 @@ console.log(string);
 
 // # Bài 8: Tính giá trị biểu thức không dùng vòng lặp
 // Tính giá trị biểu thức: S = 1 + 1/2 + 1/3 + 1/4 + 1/5 +…+1/N
-var n = 3;
-function calculateHarmonicSeriesSum(n, current = 1) {
-  if (current > n) {
-    return 0;
-  }
-  // Tính tổng và tiếp tục đệ quy
-  return 1 / current + calculateHarmonicSeriesSum(n, current + 1);
-}
+// var n = 3;
+// function calculateHarmonicSeriesSum(n, current = 1) {
+//   if (current > n) {
+//     return 0;
+//   }
+//   // Tính tổng và tiếp tục đệ quy
+//   return 1 / current + calculateHarmonicSeriesSum(n, current + 1);
+// }
 
-var sum = calculateHarmonicSeriesSum(n);
-// Làm tròn kết quả đến 2 chữ số sau dấu thập phân
-var roundedSum = sum.toFixed(2);
-console.log("S = 1 + 1/2 + 1/3 + 1/4 + 1/5 +…+1/N");
-console.log(`Tổng của chuỗi với n = ${n} bằng: ${roundedSum}`);
+// var sum = calculateHarmonicSeriesSum(n);
+// // Làm tròn kết quả đến 2 chữ số sau dấu thập phân
+// var roundedSum = sum.toFixed(2);
+// console.log(`Tổng của chuỗi với n = ${n} là: ${roundedSum}`);

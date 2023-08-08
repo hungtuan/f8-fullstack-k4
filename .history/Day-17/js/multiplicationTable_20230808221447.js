@@ -23,3 +23,5 @@ for (var i = 1; i <= 10; i++) {
   }
   multiplicationTable.appendChild(row);
 }
+
+container2.appendChild(multiplicationTable);

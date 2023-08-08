@@ -101,29 +101,29 @@ console.log(`Tổng S là: ${total}`);
 // Hàm có giá trị trả về
 // Gọi hàm trong câu điều kiện if else
 
-var flag = true;
-var n = 3;
+// var flag = true;
+// var n = 7;
 
-if (n < 2) {
-  flag = false;
-}
+// if (n < 2) {
+//   flag = false;
+// }
 
-for (var i = 2; i < n - 1; i++) {
-  if (n % i === 0) {
-    flag = false;
-    break;
-  }
-}
+// for (var i = 2; i < n - 1; i++) {
+//   if (n % i === 0) {
+//     flag = false;
+//     break;
+//   }
+// }
 
-function isPrime(flag) {
-  if (flag === false) {
-    return console.log("Không phải số nguyên tố");
-  } else {
-    return console.log(`Số ${n} là số nguyên tố`);
-  }
-}
+// function isPrime(flag) {
+//   if (flag === false) {
+//     return console.log("Không phải số nguyên tố");
+//   } else {
+//     return console.log("Là số nguyên tố");
+//   }
+// }
 
-isPrime(flag);
+// isPrime(flag);
 
 // # Bài 5: Vẽ tam giác số
 // Vẽ tam giác số sau với N dòng
@@ -137,30 +137,29 @@ isPrime(flag);
 // 7 8 9 10
 
 // 11 12 13 14 15
-var string = "";
-var count = 1;
-for (var i = 1; i <= 5; i++) {
-  for (var j = 1; j <= i; j++) {
-    string += count + " ";
-    count++;
-  }
-  string += "\n\n";
-}
-console.log(string);
+// var string = "";
+// var count = 1;
+// for (var i = 1; i <= 5; i++) {
+//   for (var j = 1; j <= i; j++) {
+//     string += count + " ";
+//     count++;
+//   }
+//   string += "\n\n";
+// }
+// console.log(string);
 
 // # Bài 8: Tính giá trị biểu thức không dùng vòng lặp
 // Tính giá trị biểu thức: S = 1 + 1/2 + 1/3 + 1/4 + 1/5 +…+1/N
-var n = 3;
-function calculateHarmonicSeriesSum(n, current = 1) {
-  if (current > n) {
-    return 0;
-  }
-  // Tính tổng và tiếp tục đệ quy
-  return 1 / current + calculateHarmonicSeriesSum(n, current + 1);
-}
+// var n = 3;
+// function calculateHarmonicSeriesSum(n, current = 1) {
+//   if (current > n) {
+//     return 0;
+//   }
+//   // Tính tổng và tiếp tục đệ quy
+//   return 1 / current + calculateHarmonicSeriesSum(n, current + 1);
+// }
 
-var sum = calculateHarmonicSeriesSum(n);
-// Làm tròn kết quả đến 2 chữ số sau dấu thập phân
-var roundedSum = sum.toFixed(2);
-console.log("S = 1 + 1/2 + 1/3 + 1/4 + 1/5 +…+1/N");
-console.log(`Tổng của chuỗi với n = ${n} bằng: ${roundedSum}`);
+// var sum = calculateHarmonicSeriesSum(n);
+// // Làm tròn kết quả đến 2 chữ số sau dấu thập phân
+// var roundedSum = sum.toFixed(2);
+// console.log(`Tổng của chuỗi với n = ${n} là: ${roundedSum}`);
