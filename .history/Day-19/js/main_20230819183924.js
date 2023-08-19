@@ -3,8 +3,6 @@
 
 var numbers = [5, 9, 1, 0, 6, 8, 9, 9, 0];
 
-var numbersMax = [];
-
 // // Số lớn nhất
 var findMax = (numbers) => {
   var max = numbers[0];
@@ -18,18 +16,16 @@ var findMax = (numbers) => {
   for (var j in numbers) {
     if (numbers[j] === max) {
       count++;
-      numbersMax.push(j);
+      console.log(`Vị trí max: ${j}`);
     }
   }
 
   return `Max: ${max}, SL: ${count}`;
 };
 var maxValue = findMax(numbers);
-console.log(`Ví trí max: ${numbersMax.join(", ")}`);
 console.log(maxValue);
 console.log("-------------");
 // // Số nhỏ nhất
-var numbersMin = [];
 var findMin = (numbers) => {
   var min = numbers[0];
   var count = 0;
@@ -42,14 +38,13 @@ var findMin = (numbers) => {
   for (var j in numbers) {
     if (numbers[j] === min) {
       count++;
-      numbersMin.push(j);
+      console.log(`Vị trí min: ${j}`);
     }
   }
 
   return `Min: ${min}, SL: ${count}`;
 };
 var minValue = findMin(numbers);
-console.log(`Ví trí min: ${numbersMin.join(", ")}`);
 console.log(minValue);
 
 // # Bài 02
@@ -79,6 +74,7 @@ var isPrime = (numbers) => {
 for (var i = 0; i < numbers.length; i++) {
   if (isPrime(numbers[i]) === true) {
     primeNumbers.push(numbers[i]); // Thêm số nguyên tố vào mảng primeNumbers
+
     sum += numbers[i];
     count++;
   }
@@ -87,7 +83,6 @@ for (var i = 0; i < numbers.length; i++) {
 if (sum === 0) {
   console.log("Không có số nguyên tố");
 } else {
-  console.log(`Số nguyên tố trong mảng là: ${primeNumbers.join(", ")}`);
   valueSum = sum / count;
   console.log(`Trung bình các số nguyên tố: ${valueSum.toFixed(2)}`);
 }

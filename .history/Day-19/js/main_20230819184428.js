@@ -29,7 +29,6 @@ console.log(`Ví trí max: ${numbersMax.join(", ")}`);
 console.log(maxValue);
 console.log("-------------");
 // // Số nhỏ nhất
-var numbersMin = [];
 var findMin = (numbers) => {
   var min = numbers[0];
   var count = 0;
@@ -42,14 +41,13 @@ var findMin = (numbers) => {
   for (var j in numbers) {
     if (numbers[j] === min) {
       count++;
-      numbersMin.push(j);
+      console.log(`Vị trí min: ${j}`);
     }
   }
 
   return `Min: ${min}, SL: ${count}`;
 };
 var minValue = findMin(numbers);
-console.log(`Ví trí min: ${numbersMin.join(", ")}`);
 console.log(minValue);
 
 // # Bài 02
