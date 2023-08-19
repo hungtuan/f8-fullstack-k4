@@ -98,9 +98,9 @@ if (sum === 0) {
 // Cho trước 1 mảng bất kỳ, nếu trong mảng có các phần tử trùng nhau thì chỉ giữa lại 1 (Gọi là lọc trùng). In ra mảng sau khi đã xử lý
 var arrays = [6, 3, 6, 3, 6, 3, "9", "9", "9"];
 
-var removeDuplicates = (arrays) =>
-  arrays.filter((item, index) => arrays.indexOf(item) === index);
-
+var removeDuplicates = (arrays) => {
+  return arrays.filter((item, index) => arrays.indexOf(item) === index);
+};
 console.log(removeDuplicates(arrays));
 
 // # Bài 04
