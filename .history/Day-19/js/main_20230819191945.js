@@ -1,7 +1,7 @@
 // # Bài 01
 // Cho trước 1 mảng số nguyên, yêu cầu tìm số lớn nhất, nhỏ nhất trong mảng và vị trí
 
-var numbers = [5, 9, 1, 0, 6, 8, 9, 9, 0, 0];
+var numbers = [5, 9, 1, 0, 6, 8, 9, 9, 0];
 
 var numbersMax = [];
 

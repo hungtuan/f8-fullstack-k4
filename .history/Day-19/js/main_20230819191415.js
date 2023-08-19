@@ -1,7 +1,7 @@
 // # Bài 01
 // Cho trước 1 mảng số nguyên, yêu cầu tìm số lớn nhất, nhỏ nhất trong mảng và vị trí
 
-var numbers = [5, 9, 1, 0, 6, 8, 9, 9, 0, 0];
+var numbers = [5, 9, 1, 0, 6, 8, 9, 9, 0];
 
 var numbersMax = [];
 
@@ -18,8 +18,8 @@ var findMax = (numbers) => {
   for (const j in numbers) {
     if (numbers[j] === max) {
       count++;
-      var index = parseInt(j);
-      numbersMax.push(index + 1);
+      j++;
+      numbersMax.push(j);
     }
   }
 
@@ -43,8 +43,8 @@ var findMin = (numbers) => {
   for (const n in numbers) {
     if (numbers[n] === min) {
       count++;
-      var index = parseInt(n);
-      numbersMin.push(index + 1);
+      n++;
+      numbersMin.push(n);
     }
   }
 
