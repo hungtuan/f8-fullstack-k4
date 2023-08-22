@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 10px auto;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+.item:nth-child(4n-1) {
+  flex-direction: row-reverse;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.content {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+p {
+  margin-top: 30px;
+}
+
+.line:not(:last-child) {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid gray;
+}
