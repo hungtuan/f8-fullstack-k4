@@ -265,60 +265,23 @@
 // giống find nhưng trả về index
 
 //
-// var users = [
-//   ["Hoàng An", "hoangan.web@gmail.com"],
-//   ["Tuấn Anh", "tuananh.web@gmail.com"],
-//   ["Nguyễn Dương", "duong.web@gmail.com"],
-//   ["Chi Nam", "chinam.web@gmail.com"],
-// ];
+var users = [
+  ["Hoàng An", "hoangan.web@gmail.com"],
+  ["Tuấn Anh", "tuananh.web@gmail.com"],
+  ["Nguyễn Dương", "duong.web@gmail.com"],
+  ["Chi Nam", "chinam.web@gmail.com"],
+];
 
-// var email = "tuananh.web@gmail.com";
+console.log(users);
 
-// var index = users.findIndex((user) => {
-//   return user[1] === email;
-// });
+var email = "tuananh@gmail.com";
 
-// if (index !== -1) {
-//   users.splice(index, 1);
-// }
-// console.log(users);
+// splice > filter
+for (const i in users) {
+  users[i].findIndex((user) => {
+    return user[1] === email;
+  });
+}
 
-//
-// var numbers = [1, 3, 5, 7, 9];
-
-// var check = numbers.every((number) => {
-//   return number % 2 !== 0;
-// });
-
-// console.log(check);
-
-// reduce
-// var numbers = [1, 2, 4, 7, 5];
-
-// var result = numbers.reduce((prev, current) => {
-//   return prev < current ? current : prev;
-// });
+// users.splice(2, 1, "")
 // console.log(result);
-// var arr1 = [5, 2, 1, 9, 8];
-// var arr2 = [2, 1, 8, 3];
-
-// var result = arr1.reduce((prev, current) => {
-//   if (!arr2.includes(current)) {
-//     prev.push(current);
-//   }
-//   return prev;
-// }, []);
-
-// console.log(result);
-
-// var result = arr1.reduce(prev, current) => {
-//   console.log(prev);
-// });
-// console.log(result);
-// var a = ["Tuân", "An"];
-
-// b = [...a];
-
-// b[0] = "Huy";
-// console.log(a);
-// console.log(b);

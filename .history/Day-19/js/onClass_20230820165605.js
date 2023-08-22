@@ -315,10 +315,10 @@
 //   console.log(prev);
 // });
 // console.log(result);
-// var a = ["Tuân", "An"];
+var a = ["Tuân", "An"];
 
-// b = [...a];
+b = [...a];
 
-// b[0] = "Huy";
-// console.log(a);
-// console.log(b);
+b[0] = "Huy";
+console.log(a);
+console.log(b);

@@ -315,10 +315,10 @@
 //   console.log(prev);
 // });
 // console.log(result);
-// var a = ["Tuân", "An"];
 
-// b = [...a];
+function sum() {
+  Array.from(arguments);
+  console.log(arguments);
+}
 
-// b[0] = "Huy";
-// console.log(a);
-// console.log(b);
+sum(5, 10, 15, 20, 25);

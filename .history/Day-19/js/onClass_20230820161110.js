@@ -299,26 +299,10 @@
 //   return prev < current ? current : prev;
 // });
 // console.log(result);
-// var arr1 = [5, 2, 1, 9, 8];
-// var arr2 = [2, 1, 8, 3];
+var arr1 = [5, 2, 1, 9, 8];
+var arr2 = [2, 1, 8, 3];
 
-// var result = arr1.reduce((prev, current) => {
-//   if (!arr2.includes(current)) {
-//     prev.push(current);
-//   }
-//   return prev;
-// }, []);
-
-// console.log(result);
-
-// var result = arr1.reduce(prev, current) => {
-//   console.log(prev);
-// });
-// console.log(result);
-// var a = ["Tuân", "An"];
-
-// b = [...a];
-
-// b[0] = "Huy";
-// console.log(a);
-// console.log(b);
+var result = arr1.reduce((prev, current) => {
+  console.log(prev);
+}, arr2);
+console.log(result);
