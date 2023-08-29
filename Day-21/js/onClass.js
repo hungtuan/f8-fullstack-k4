@@ -199,3 +199,138 @@
 // Object.keys()
 // var a = { name: "An" };
 // console.log(a.valueOf());
+
+// Phương thức Entries()
+// Object.entries()
+
+// var user = {
+//   name: "Hoàng An",
+//   email: "hoangan.web@gmail.com",
+//   age: 31,
+// };
+
+// console.log(Object.entries(user));
+
+// BTap : Chuyển object thành query string
+// var query = {
+//   keyword: "Hoàng An",
+//   category: 1,
+//   brand: 1,
+//   province: "Hà Nội",
+// };
+// Chuyển thành keyword=Hoàng+An&category=1&brand=1&province=Hà+Nội
+
+// var objectIntoArray = Object.entries(query);
+
+// var result = objectIntoArray
+//   .map((value) => {
+//     return value.join("=");
+//   })
+//   .join("&")
+//   .replaceAll(" ", "+");
+
+// console.log(result);
+// Bài 2: Chuyển query String thành object
+
+// var objectString = result.split("&").map((value) => {
+//   var elementArray = value.split("=");
+
+//   elementArray[1] = elementArray[1].replaceAll("+", " ");
+
+//   return elementArray;
+// });
+
+// console.log(objectString);
+// var result = Object.fromEntries(objectString);
+// console.log(result);
+
+// Array.prototype.map2 = function (callback) {
+//   var newArr = [];
+//   for (var i = 0; i < this.length; i++) {
+//     newArr[i] = callback(this[i], i);
+//   }
+//   return newArr;
+// };
+
+// var users = ["An", "Tuân", "Đạt"];
+
+// var output = users.map2((user, index) => {
+//   return `<h3>${index} - ${user}</h3>`;
+// });
+// console.log(output);
+
+// var user = Object.create(null);
+// console.log(user);
+
+// Tham chiếu trong object
+// var a = {
+//   name: "Hoàng An",
+//   emai: "hoangan.web@gmail.com",
+// };
+
+// var b = a;
+// C1 Shalow copy
+// var b = Object.assign({}, a);
+
+// C2
+// var b = JSON.parse(JSON.stringify(a));
+// b.name = "Hoàng An B";
+// console.log(a, b);
+
+// Optional Chaining(?.)
+// var a = {};
+// console.log(a?.name?.job);
+// // VD
+// var fullName = "Hoàng An";
+// if (fullName?.length) {
+//   console.log("ok");
+// }
+
+// 2. Optional Channing với phương thưucs
+// var a = {};
+// a.getName?.();
+
+// var users = [1, 2, 3];
+// if (users.length) {
+//   users.forEach?.((user) => {
+//     console.log(user);
+//   });
+// }
+
+var arr = [
+  {
+    image: "https://picsum.photos/200/150",
+    title: "Tiêu đề bài viết 1",
+    description:
+      " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil illum odio unde! Ad, debitis nam animi qui tenetur at eius, expedita ratione ipsa explicabo aliquid et ducimus facilis labore voluptatibus.",
+  },
+  {
+    image: "https://picsum.photos/200/150",
+    title: "Tiêu đề bài viết 2",
+    description:
+      " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil illum odio unde! Ad, debitis nam animi qui tenetur at eius, expedita ratione ipsa explicabo aliquid et ducimus facilis labore voluptatibus.",
+  },
+  {
+    image: "https://picsum.photos/200/150",
+    title: "Tiêu đề bài viết 3",
+    description:
+      " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil illum odio unde! Ad, debitis nam animi qui tenetur at eius, expedita ratione ipsa explicabo aliquid et ducimus facilis labore voluptatibus.",
+  },
+];
+
+var html = `<div class = "posts">
+${arr
+  .map((value, index) => {
+    return `<div class="post-item ${index % 2 !== 0 ? "post-right" : ""}">
+    <img src="${value.image}" alt="" srcset="">
+    <div>
+            
+            <h2>${value.title}</h2>
+            <p>${value.description}</p>
+        </div>
+    </div>`;
+  })
+  .join("")}
+</div>`;
+
+document.write(html);
