@@ -115,10 +115,8 @@ var array = [1, 2, 3, 4];
 Array.prototype.reduce2 = function (callback, inputNumber) {
   var accumulator;
 
-  if (inputNumber) {
+  if (accumulator) {
     accumulator = inputNumber;
-  } else {
-    accumulator = this[1];
   }
 
   for (let i = 0; i < this.length; i++) {

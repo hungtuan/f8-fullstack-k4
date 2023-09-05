@@ -115,7 +115,7 @@ var array = [1, 2, 3, 4];
 Array.prototype.reduce2 = function (callback, inputNumber) {
   var accumulator;
 
-  if (inputNumber) {
+  if (inputNumber !== null) {
     accumulator = inputNumber;
   } else {
     accumulator = this[1];
@@ -131,6 +131,6 @@ Array.prototype.reduce2 = function (callback, inputNumber) {
 var sum = array.reduce2((accumulator, currentValue) => {
   console.log(accumulator, currentValue);
   return accumulator + currentValue;
-}, 0);
+});
 
 console.log("Tổng =", sum);

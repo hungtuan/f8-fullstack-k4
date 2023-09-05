@@ -113,13 +113,7 @@ console.log(JSON.stringify(nestedCategories, null, 2));
 var array = [1, 2, 3, 4];
 
 Array.prototype.reduce2 = function (callback, inputNumber) {
-  var accumulator;
-
-  if (inputNumber) {
-    accumulator = inputNumber;
-  } else {
-    accumulator = this[1];
-  }
+  var accumulator = inputNumber;
 
   for (let i = 0; i < this.length; i++) {
     accumulator = callback(accumulator, this[i]);
