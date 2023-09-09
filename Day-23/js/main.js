@@ -1,38 +1,35 @@
-const btnModal = document.querySelector(".btn-login");
-const overlay = document.querySelector(".overlay");
-const modal = document.querySelector(".modal");
-const btnLogin = document.querySelector(".modal-login");
-const btnRegister = document.querySelector(".modal-register");
-const loginContent = document.querySelector(".login-content");
-const registerContent = document.querySelector(".register-content");
+var btnModal = document.querySelector(".btn-login");
+var overlay = document.querySelector(".overlay");
+var modal = document.querySelector(".modal");
+var btnLogin = document.querySelector(".modal-login");
+var btnRegister = document.querySelector(".modal-register");
+var loginContent = document.querySelector(".login-content");
+var registerContent = document.querySelector(".register-content");
 
-const inputEmailLogin = document.querySelector(".form-login.form .email-input");
-const inputPasswordLogin = document.querySelector(
+var inputEmailLogin = document.querySelector(".form-login.form .email-input");
+var inputPasswordLogin = document.querySelector(
   ".form-login.form .password-input"
 );
-const errEmail = document.querySelector(".err-email");
-const errPassword = document.querySelector(".err-pass");
+var errEmail = document.querySelector(".err-email");
+var errPassword = document.querySelector(".err-pass");
 
-const inputFullNameRegister = document.querySelector(
-  ".form-register.form .name-input"
+var inputFullNameRegister = document.querySelector(".form.form-register");
+var errFullNameRegister = document.querySelector(
+  ".form.form-register .err-fullName"
 );
-const errFullNameRegister = document.querySelector(
-  ".form-register.form .err-fullName"
+var inputEmailRegister = document.querySelector(
+  ".form.form-register .email-input"
 );
-const inputEmailRegister = document.querySelector(
-  ".form-register.form .email-input"
+var errEmailRegister = document.querySelector(".form.form-register .err-email");
+var inputPasswordRegister = document.querySelector(
+  ".form.form-register .password-input"
 );
-const errEmailRegister = document.querySelector(
-  ".form-register.form .err-email"
-);
-const inputPasswordRegister = document.querySelector(
-  ".form-register.form .password-input"
-);
-const errPasswordRegister = document.querySelector(
-  ".form-register.form .err-pass"
+var errPasswordRegister = document.querySelector(
+  ".form.form-register .err-pass"
 );
 
-function resetFormFields() {
+// Hàm để thiết lập lại các trường và thông báo lỗi
+function resetFieldsAndErrors() {
   inputEmailLogin.form.reset();
   errEmail.innerText = "";
   inputEmailLogin.parentElement.classList.remove("invalid");
@@ -54,37 +51,43 @@ function resetFormFields() {
   inputPasswordRegister.parentElement.classList.remove("invalid");
 }
 
-function showLoginTab() {
-  btnLogin.classList.remove("no-active");
-  btnRegister.classList.add("no-active");
-  loginContent.classList.remove("d-none");
-  registerContent.classList.add("d-none");
-  resetFormFields();
-}
-
-function showRegisterTab() {
-  btnRegister.classList.remove("no-active");
-  btnLogin.classList.add("no-active");
-  registerContent.classList.remove("d-none");
-  loginContent.classList.add("d-none");
-  resetFormFields();
-}
-
+// Ẩn hiện modal
 btnModal.addEventListener("click", function () {
   modal.classList.add("show");
-  showLoginTab();
+  registerContent.classList.add("display-none");
+  btnLogin.classList.remove("no-active");
+  btnRegister.classList.add("no-active");
+  loginContent.classList.remove("display-none");
+  registerContent.classList.add("display-none");
+
+  resetFieldsAndErrors();
 });
 
 overlay.addEventListener("click", function () {
   modal.classList.remove("show");
 });
 
-document.onkeyup = function (el) {
-  if (el.key === "Escape") {
+document.onkeyup = function (e) {
+  if (e.key === "Escape") {
     modal.classList.remove("show");
   }
 };
 
-btnRegister.addEventListener("click", showRegisterTab);
+// Chuyển tab trong modal
+btnRegister.addEventListener("click", function () {
+  btnRegister.classList.remove("no-active");
+  btnLogin.classList.add("no-active");
+  registerContent.classList.remove("display-none");
+  loginContent.classList.add("display-none");
 
-btnLogin.addEventListener("click", showLoginTab);
+  resetFieldsAndErrors();
+});
+
+btnLogin.addEventListener("click", function () {
+  btnLogin.classList.remove("no-active");
+  btnRegister.classList.add("no-active");
+  loginContent.classList.remove("display-none");
+  registerContent.classList.add("display-none");
+
+  resetFieldsAndErrors();
+});

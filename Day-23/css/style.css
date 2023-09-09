@@ -272,11 +272,11 @@ a {
   visibility: visible;
 }
 
-.d-block {
+.display-block {
   display: block;
 }
 
-.d-none {
+.display-none {
   display: none;
 }
 
