@@ -1,43 +1,40 @@
-/* Apply styles to the container div */
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: #fff;
-  padding: 0 18px 18px 18px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 9px auto;
-  max-width: 1400px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  gap: 6px;
-
-  /* Add this to align content to the left */
-  text-align: left;
+/* Thiết lập font chung cho trang */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
 }
 
-/* Apply styles to the paragraph inside the container */
-.container p {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 12px;
-}
-
-/* Apply styles to the link inside the container */
-.container a {
-  /* display: block; */
-  font-size: 18px;
-  color: #fff;
-  background-color: #007bff;
-  padding: 9px 9px;
-  text-decoration: none;
-  border-radius: 6px;
-  width: 60px;
+/* Style cho tiêu đề h1 */
+h1 {
   text-align: center;
-  margin-bottom: 9px; /* Add some space between the paragraph and the link */
+  color: #333;
+  margin-top: 20px;
 }
 
-/* Change the link styles when hovering */
+/* Style cho container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+/* Style cho các đoạn văn bản và liên kết */
+.container p {
+  margin: 10px 0;
+  color: #555;
+}
+
+.container a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
 .container a:hover {
-  background-color: #0056b3;
+  color: #0056b3;
 }
