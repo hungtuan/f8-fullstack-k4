@@ -1,0 +1,290 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 20px 70px;
+  font-size: 15px;
+  max-width: 1130px;
+  margin: 0 auto;
+}
+
+button,
+input::placeholder {
+  font-size: 15px;
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: #4c4c4c;
+  font-weight: 500;
+}
+
+.header {
+  max-width: 1130px;
+  margin: 0 auto;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.btn-login {
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-weight: 600;
+  color: #717070;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.btn-login:hover {
+  opacity: 0.8;
+}
+
+.btn-login i {
+  padding-left: 8px;
+  font-size: 20px;
+}
+
+/* MODAL CONTAINER */
+
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  transition-property: opacity, visibility;
+  transition: 0.2s ease-in-out;
+}
+
+.modal-container {
+  max-width: 500px;
+  margin: 30px auto;
+  background: #fff;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  border-radius: 10px;
+  transition: top 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+.modal-header {
+  width: 100%;
+}
+
+.header-main {
+  display: flex;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.modal-login,
+.modal-register {
+  padding: 20px 0;
+  cursor: pointer;
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.text-desc {
+  display: block;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.btn-container {
+  padding: 0 40px;
+}
+
+.container-inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-container img {
+  width: 20px;
+}
+
+.login-google,
+.login-facebook {
+  padding: 10px 60px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.text-or {
+  display: block;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 15px;
+  position: relative;
+}
+
+.text-or::after,
+.text-or::before {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 2px;
+  background-color: #f0f0f0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.text-or::before {
+  left: 0;
+}
+
+.text-or::after {
+  right: 5px;
+}
+
+.form-register,
+.form-login {
+  padding: 0 40px;
+}
+
+.form-register input,
+.form-login input {
+  padding: 16px;
+  min-width: 100%;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.name-container,
+.password-container,
+.email-container {
+  margin-bottom: 20px;
+}
+
+.title-name,
+.title-password,
+.title-email {
+  margin-bottom: 8px;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container .show-hide {
+  position: absolute;
+  right: 14px;
+  top: 40px;
+  color: #7c7c7c;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.forget-password {
+  margin-bottom: 20px;
+  text-align: right;
+  cursor: pointer;
+  font-style: italic;
+  color: #999;
+}
+
+.register-login,
+.submit-login {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+  background-color: #1a7900;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+.register-login:hover,
+.submit-login:hover {
+  opacity: 0.8;
+}
+
+/* DESCRIPTION */
+.desc-register {
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.text-policy {
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.text-policy a {
+  color: #306aff;
+}
+
+/* OVERLAY */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s ease-in-out;
+  transition-property: opacity, visibility;
+}
+
+.modal.show .overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* JS */
+.no-active {
+  background-color: #eee;
+  color: #999;
+  width: 100%;
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
+
+.form .invalid input {
+  border-color: red !important;
+}
+
+.form .invalid .form-message {
+  color: red;
+  font-style: italic;
+}
