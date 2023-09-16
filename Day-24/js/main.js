@@ -28,7 +28,7 @@ function addTask(tasks = []) {
     content += `
       <div class="todo">
         <p class="task-item">${task.name}</p>
-        <div>
+        <div class=icon>
           <a href="#" onclick="editTask(${index})">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
@@ -53,10 +53,8 @@ function getTasks() {
 
 // edit
 function editTask(index) {
-  console.log(this);
   var tasks = getTasks();
   var updatedTask = prompt("Edit task:", tasks[index].name);
-
   if (updatedTask !== null) {
     tasks[index].name = updatedTask;
     localStorage.setItem("tasks", JSON.stringify(tasks));
