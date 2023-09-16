@@ -69,7 +69,7 @@ carouselDot.forEach(function (dot, index) {
   dot.addEventListener("click", function (e) {
     e.preventDefault();
 
-    var dotActive = carousel.querySelector(".carousel-dots .active");
+    var dotActive = carousel.querySelector(".carousel-dots .dot.active");
     if (dotActive !== null) {
       dotActive.classList.remove("active");
     }
@@ -83,7 +83,7 @@ carouselDot.forEach(function (dot, index) {
 // Trượt slider
 var flagMove = false;
 var isOffsetX;
-var threshold = 0.15 * itemWidth; //15%
+var threshold = 0.15 * itemWidth; //đặt ngưỡng 15%
 
 carouselInner.addEventListener("mousedown", function (e) {
   flagMove = true;
@@ -127,7 +127,7 @@ carouselInner.addEventListener("mousemove", function (e) {
       carouselInner.style.translate = `${position}px`;
       flagMove = false;
 
-      //chuyen dot next
+      //dot next
       var nextDotIndex = Math.abs(position) / itemWidth - 1;
       var currentDotIndex = Math.abs(position) / itemWidth;
       carouselDot[nextDotIndex].classList.remove("active");
@@ -140,7 +140,7 @@ carouselInner.addEventListener("mousemove", function (e) {
       carouselInner.style.translate = `${position}px`;
       flagMove = false;
 
-      //chuyen dot prev
+      //dot prev
       var prevDotIndex = Math.abs(position) / itemWidth + 1;
       var currentDotIndex = Math.abs(position) / itemWidth;
       carouselDot[prevDotIndex].classList.remove("active");
