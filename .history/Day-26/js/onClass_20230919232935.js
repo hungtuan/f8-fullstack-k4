@@ -67,7 +67,7 @@ document.addEventListener("mouseup", function () {
   isDragging = false;
   currentValue = value;
 
-  var releaseTime = (value * audio.duration) / 100;
+  var releaseTime = (audio.duration * value) / 100;
   currentTimeEl.innerText = getTime(releaseTime);
 
   audio.currentTime = releaseTime;
