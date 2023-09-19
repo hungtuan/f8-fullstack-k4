@@ -3,8 +3,6 @@ var progressBar = document.querySelector(".progress-bar");
 var progress = progressBar.querySelector(".progress");
 var progressSpan = progress.querySelector("span");
 var tooltip = document.querySelector(".tooltip");
-var currentTimeEl = progressBar.previousElementSibling;
-var durationEl = progressBar.nextElementSibling;
 
 var progressBarWidth = progressBar.clientWidth;
 var valueMove;
@@ -12,6 +10,8 @@ var initialClientX;
 var currentValue = 0;
 var value = 0;
 var isDragging = false;
+var newTime;
+var previousTime = 0;
 
 progressBar.addEventListener("mousedown", function (e) {
   if (e.which === 1) {
@@ -54,7 +54,7 @@ var handDrag = function (e) {
     progress.style.width = `${value}%`;
 
     //
-    var newTime = (value * audio.duration) / 100;
+    newTime = (value * audio.duration) / 100;
     currentTimeEl.innerText = getTime(newTime);
 
     handInput(value);
@@ -85,6 +85,9 @@ var handInput = function (value) {
 
 // Audio
 var audio = document.querySelector(".audio");
+var currentTimeEl = progressBar.previousElementSibling;
+var durationEl = progressBar.nextElementSibling;
+
 var playBtn = document.querySelector(".player .play-btn");
 
 var playIcon = `<i class="fa-solid fa-play"></i>`;
@@ -114,8 +117,8 @@ playBtn.addEventListener("click", function (e) {
 audio.addEventListener("timeupdate", function () {
   if (!isDragging) {
     currentTimeEl.innerText = getTime(audio.currentTime);
-
-    value = (audio.currentTime * 100) / audio.duration;
+    durationEl.innerText = getTime(audio.duration);
+    var value = (audio.currentTime * 100) / audio.duration;
 
     progress.style.width = `${value}%`;
   }
@@ -133,17 +136,17 @@ audio.addEventListener("pause", function () {
 // Hiển thị thời gian khi chỉ vào thanh
 function showTooltip(e) {
   const progressBarRect = progressBar.getBoundingClientRect();
-  var mouseX = e.clientX - progressBarRect.left;
+  let mouseX = e.clientX - progressBarRect.left;
 
   //mouseX không nhỏ hơn 0 và không lớn hơn thanh progressBar
   mouseX = Math.max(0, Math.min(mouseX, progressBarRect.width));
 
-  var percentage = mouseX / progressBarRect.width;
+  const percentage = mouseX / progressBarRect.width;
   var previewTime = percentage * audio.duration;
   tooltip.innerText = getTime(previewTime);
-  tooltip.style.left = `${mouseX}px`;
-
   tooltip.style.display = "block";
+
+  tooltip.style.left = `${mouseX}px`;
 }
 
 progressBar.addEventListener("mousemove", showTooltip);
@@ -157,5 +160,6 @@ audio.addEventListener("ended", () => {
   value = 0;
   playBtn.innerHTML = playIcon;
 
-  audio.currentTime = 0;
+  var end = (audio.currentTime = 0);
+  currentTimeEl.innerText = getTime(end);
 });

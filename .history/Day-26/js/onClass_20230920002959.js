@@ -3,8 +3,6 @@ var progressBar = document.querySelector(".progress-bar");
 var progress = progressBar.querySelector(".progress");
 var progressSpan = progress.querySelector("span");
 var tooltip = document.querySelector(".tooltip");
-var currentTimeEl = progressBar.previousElementSibling;
-var durationEl = progressBar.nextElementSibling;
 
 var progressBarWidth = progressBar.clientWidth;
 var valueMove;
@@ -85,6 +83,9 @@ var handInput = function (value) {
 
 // Audio
 var audio = document.querySelector(".audio");
+var currentTimeEl = progressBar.previousElementSibling;
+var durationEl = progressBar.nextElementSibling;
+
 var playBtn = document.querySelector(".player .play-btn");
 
 var playIcon = `<i class="fa-solid fa-play"></i>`;
@@ -106,8 +107,10 @@ playBtn.addEventListener("click", function (e) {
   e.stopPropagation();
   if (audio.paused) {
     audio.play();
+    this.innerHTML = pauseIcon;
   } else {
     audio.pause();
+    this.innerHTML = playIcon;
   }
 });
 
@@ -115,20 +118,20 @@ audio.addEventListener("timeupdate", function () {
   if (!isDragging) {
     currentTimeEl.innerText = getTime(audio.currentTime);
 
-    value = (audio.currentTime * 100) / audio.duration;
+    var value = (audio.currentTime * 100) / audio.duration;
 
     progress.style.width = `${value}%`;
   }
 });
 
 // Khi dừng, chạy
-audio.addEventListener("play", function () {
-  playBtn.innerHTML = pauseIcon;
-});
+// audio.addEventListener("play", function () {
+//   playBtn.innerHTML = pauseIcon;
+// });
 
-audio.addEventListener("pause", function () {
-  playBtn.innerHTML = playIcon;
-});
+// audio.addEventListener("pause", function () {
+//   playBtn.innerHTML = playIcon;
+// });
 
 // Hiển thị thời gian khi chỉ vào thanh
 function showTooltip(e) {

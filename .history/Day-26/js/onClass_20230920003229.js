@@ -115,7 +115,7 @@ audio.addEventListener("timeupdate", function () {
   if (!isDragging) {
     currentTimeEl.innerText = getTime(audio.currentTime);
 
-    value = (audio.currentTime * 100) / audio.duration;
+    var value = (audio.currentTime * 100) / audio.duration;
 
     progress.style.width = `${value}%`;
   }

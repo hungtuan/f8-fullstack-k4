@@ -3,8 +3,6 @@ var progressBar = document.querySelector(".progress-bar");
 var progress = progressBar.querySelector(".progress");
 var progressSpan = progress.querySelector("span");
 var tooltip = document.querySelector(".tooltip");
-var currentTimeEl = progressBar.previousElementSibling;
-var durationEl = progressBar.nextElementSibling;
 
 var progressBarWidth = progressBar.clientWidth;
 var valueMove;
@@ -85,6 +83,9 @@ var handInput = function (value) {
 
 // Audio
 var audio = document.querySelector(".audio");
+var currentTimeEl = progressBar.previousElementSibling;
+var durationEl = progressBar.nextElementSibling;
+
 var playBtn = document.querySelector(".player .play-btn");
 
 var playIcon = `<i class="fa-solid fa-play"></i>`;
@@ -107,7 +108,9 @@ playBtn.addEventListener("click", function (e) {
   if (audio.paused) {
     audio.play();
   } else {
+    var currentTime = audio.currentTime;
     audio.pause();
+    audio.currentTime = currentTime;
   }
 });
 
@@ -115,7 +118,7 @@ audio.addEventListener("timeupdate", function () {
   if (!isDragging) {
     currentTimeEl.innerText = getTime(audio.currentTime);
 
-    value = (audio.currentTime * 100) / audio.duration;
+    var value = (audio.currentTime * 100) / audio.duration;
 
     progress.style.width = `${value}%`;
   }
