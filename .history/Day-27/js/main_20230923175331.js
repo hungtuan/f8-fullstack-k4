@@ -188,6 +188,8 @@ function renderCart() {
     </tr>
   `;
 
+  updateCartSummary();
+
   const btnUpdateCart = productCart.querySelector("#update-cart");
   btnUpdateCart.addEventListener("click", function () {
     alert("Cập nhật giỏ hàng thành công");
