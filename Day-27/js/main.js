@@ -127,8 +127,8 @@ function updateCartSummary() {
   const totalPriceElement = document.querySelector("#total-price");
   const totalQuantityElement = document.querySelector("#total-quantity");
 
-  totalPriceElement.textContent = totalPrice;
   totalQuantityElement.textContent = totalQuantity;
+  totalPriceElement.textContent = totalPrice;
 }
 
 // Xóa toàn bộ giỏ hàng
@@ -188,6 +188,8 @@ function renderCart() {
     </tr>
   `;
 
+  updateCartSummary();
+
   const btnUpdateCart = productCart.querySelector("#update-cart");
   btnUpdateCart.addEventListener("click", function () {
     alert("Cập nhật giỏ hàng thành công");
@@ -222,4 +224,3 @@ function renderCart() {
 
 renderProduct();
 renderCart();
-updateCartSummary();
