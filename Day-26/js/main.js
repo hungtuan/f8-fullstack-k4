@@ -167,90 +167,90 @@ audio.addEventListener("ended", () => {
 });
 
 // Buổi 28
+// Lấy  dữ liệu lyrics
 var sentences = lyrics.data.sentences;
+
 var karaoke = document.querySelector(".karaoke");
 var karaokeInner = document.querySelector(".karaoke-inner");
-var open = document.querySelector(".show-karaoke button");
-var close = document.querySelector(".close");
+var openBtn = document.querySelector(".show-karaoke button");
+var closeBtn = document.querySelector(".close");
 
-open.addEventListener("click", function () {
+var info = `<p>Anh Đây Đừng Khóc</p><p>Ca sĩ: Lý Tuấn Kiệt</p>`;
+
+var shouldShowInfoAtStart = true;
+var shouldShowInfoAtEnd = true;
+
+function toggleKaraoke() {
   if (karaoke.classList.contains("show")) {
     karaoke.classList.remove("show");
-    close.addEventListener("click", function () {
-      karaoke.classList.remove("show");
-    });
+    closeBtn.removeEventListener("click", toggleKaraoke);
   } else {
     karaoke.classList.add("show");
+    closeBtn.addEventListener("click", toggleKaraoke);
   }
-});
+}
 
-var showKaraoke = function () {
-  var currentTime = Math.round(audio.currentTime * 1000);
+openBtn.addEventListener("click", toggleKaraoke);
 
-  // Dạo đầu bài
-  if (currentTime < sentences[0].words[0].startTime) {
-    var info = `<p>Anh Đây Đừng Khóc</p>
-            <p>Ca sĩ: Lý Tuấn Kiệt</p>`;
+// Hiển thị lời bài hát
+function showKaraoke() {
+  var currentTime = audio.currentTime * 1000;
+
+  // Hiển thị thông tin ở đầu
+  if (shouldShowInfoAtStart && currentTime < sentences[0].words[0].startTime) {
     karaokeInner.innerHTML = info;
+    shouldShowInfoAtStart = false;
+    shouldShowInfoAtEnd = true;
     return;
   }
 
-  // Dạo cuối bài
+  // Hiển thị thông tin ở cuối
+  var lastSentence = sentences[sentences.length - 1];
   if (
-    currentTime >
-    sentences[sentences.length - 1].words[
-      sentences[sentences.length - 1].words.length - 1
-    ].endTime +
-      2000
+    shouldShowInfoAtEnd &&
+    currentTime > lastSentence.words[lastSentence.words.length - 1].endTime
   ) {
-    var info = `<p>Anh Đây Đừng Khóc</p>
-            <p>Ca sĩ: Lý Tuấn Kiệt</p>`;
     karaokeInner.innerHTML = info;
+    shouldShowInfoAtEnd = false;
+    shouldShowInfoAtStart = true;
     return;
   }
 
-  // Handle trong bài
-  for (var i = 0; i < sentences.length; i++) {
-    if (i % 2 === 0) {
-      // Handle 2 câu 1 page
-      if (
-        currentTime >= sentences[i].words[0].startTime - 800 &&
-        currentTime <=
-          sentences[i + 1].words[sentences[i + 1].words.length - 1].endTime
-      ) {
-        // Câu chẵn
-        var even = sentences[i].words
-          .map(function (word) {
-            return `<span class="word">${word.data}</span>`;
-          })
-          .join("");
+  for (var i = 0; i < sentences.length; i += 2) {
+    var currentSentence = sentences[i];
+    var nextSentence = sentences[i + 1];
 
-        // Câu lẻ
-        var odd = sentences[i + 1].words
-          .map(function (word) {
-            return `<span class="word">${word.data}</span>`;
-          })
-          .join("");
+    if (
+      i + 1 < sentences.length &&
+      currentTime >= currentSentence.words[0].startTime - 800 &&
+      currentTime <= nextSentence.words[nextSentence.words.length - 1].endTime
+    ) {
+      var even = currentSentence.words
+        .map(function (word) {
+          return `<span class="word">${word.data}</span>`;
+        })
+        .join("");
 
-        var line = `<p class="even">${even}</p>
-                <p class="odd">${odd}</p>`;
-        karaokeInner.innerHTML = line;
-      }
+      var odd = nextSentence.words
+        .map(function (word) {
+          return `<span class="word">${word.data}</span>`;
+        })
+        .join("");
 
-      // Handle dạo nhạc > 5s thì hiện info
-      if (
-        currentTime >
-          sentences[i + 1].words[sentences[i + 1].words.length - 1].endTime +
-            2000 &&
-        currentTime < sentences[i + 2].words[0].startTime &&
-        sentences[i + 2].words[0].startTime -
-          sentences[i + 1].words[sentences[i + 1].words.length - 1].endTime >
-          5000
-      ) {
-        var info = `<p>Anh Đây Đừng Khóc</p>
-            <p>Ca sĩ: Lý Tuấn Kiệt</p>`;
-        karaokeInner.innerHTML = info;
-      }
+      var line = `<p class="even">${even}</p><p class="odd">${odd}</p>`;
+      karaokeInner.innerHTML = line;
+      return;
     }
   }
-};
+
+  if (
+    currentTime >
+      lastSentence.words[lastSentence.words.length - 1].endTime + 2000 &&
+    currentTime < sentences[sentences.length - 2].words[0].startTime &&
+    sentences[sentences.length - 2].words[0].startTime -
+      lastSentence.words[lastSentence.words.length - 1].endTime >
+      5000
+  ) {
+    karaokeInner.innerHTML = info;
+  }
+}
