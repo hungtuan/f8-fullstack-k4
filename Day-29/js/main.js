@@ -28,7 +28,8 @@ function renderItemOrModule(items, name) {
 
     // Đặt nội dung của mục thành "Bài (hoặc Module) số thứ tự: "
     // và sau đó, thêm phần tử <span> vào trong mục
-    item.innerText = name + " " + (index + 1) + ": ";
+
+    item.innerText = `${name} ${index + 1}: `;
     item.appendChild(span);
 
     // Gắn sự kiện "dragstart" và "dragend" cho mục
@@ -74,8 +75,16 @@ function handleDragOver(e) {
 
   // Cập nhật lại số thứ tự của tất cả các mục sau khi di chuyển
   var allItems = document.querySelectorAll(".list-item");
+
   allItems.forEach(function (item, index) {
     item.setAttribute("data-index", index);
+
+    // Lấy tên (Bài hoặc Module) của mục
+    var name = item.classList.contains("module") ? "Module" : "Bài";
+    var span = item.querySelector("span");
+
+    item.innerText = name + " " + (index + 1) + ": ";
+    item.appendChild(span);
   });
 }
 
