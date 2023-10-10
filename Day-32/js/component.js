@@ -1,67 +1,72 @@
 class F8 {
   constructor() {}
+
   static component(name, options) {
     customElements.define(
       name,
       class extends HTMLElement {
         constructor() {
           super();
+          this.data = options.data && options.data();
         }
+
         connectedCallback() {
           const template = options.template;
-          if (options.data) {
-            var data = options.data();
-            Object.keys(data).forEach((key) => {
-              window[key] = data[key];
-            });
-          }
 
           if (template) {
-            const reGex = template.match(/{{.+?}}/g);
-            const regexTrim = [];
-            reGex.forEach((value) => {
-              const variableRegex = value.match(/{{(.+?)}}/);
-              regexTrim.push(variableRegex[1].trim());
-            });
-            var replaceTemplate = template;
-            regexTrim.forEach((replaceEl) => {
-              replaceTemplate = replaceTemplate.replace(
-                /{{.+?}}/,
-                `${window[replaceEl]}`
-              );
-            });
-
-            const templateEl = document.createElement("template");
-            templateEl.innerHTML = replaceTemplate;
-            const templateNode = templateEl.content.cloneNode(true);
-
-            const btnAll = templateNode.querySelectorAll("button");
-            const span = templateNode.querySelector(".count-span");
-            const h1 = templateNode.querySelector("h1");
-            btnAll.forEach((btn) => {
-              const btnAttribute = btn.getAttributeNames();
-              let getEvent = btnAttribute[0].split(":");
-              let eventBtn = getEvent[1];
-              let checkAttribute = btn.getAttribute(`v-on:${eventBtn}`);
-
-              btn.addEventListener(eventBtn, () => {
-                if (checkAttribute === "count--") {
-                  count--;
-                  span.innerText = count;
-                }
-                if (checkAttribute === "count++") {
-                  count++;
-                  span.innerText = count;
-                }
-                if (checkAttribute.includes("title=")) {
-                  let contentTitle = checkAttribute.split("=");
-                  h1.innerHTML = contentTitle[1];
-                }
-              });
-            });
-
+            const updatedTemplate = this.replaceVariables(template);
+            const templateNode = this.createTemplateNode(updatedTemplate);
+            this.setupEventListeners(templateNode);
             this.append(templateNode);
           }
+        }
+
+        replaceVariables(template) {
+          return template.replace(/{{(.+?)}}/g, (match, variable) => {
+            // Lấy tên biến bên trong dấu ngoặc nhọn {{...}}
+            const variableName = variable.trim();
+            // Kiểm tra xem biến có tồn tại trong data không
+            if (this.data && this.data.hasOwnProperty(variableName)) {
+              // Trả về giá trị của biến từ data
+              return this.data[variableName];
+            }
+            // Nếu không tìm thấy biến, trả về chuỗi rỗng
+            return "";
+          });
+        }
+
+        createTemplateNode(template) {
+          const templateEl = document.createElement("template");
+          templateEl.innerHTML = template;
+          return templateEl.content.cloneNode(true);
+        }
+
+        setupEventListeners(templateNode) {
+          const btnAll = templateNode.querySelectorAll("button");
+          const span = templateNode.querySelector(".count-span");
+          const h1 = templateNode.querySelector("h1");
+
+          btnAll.forEach((btn) => {
+            const btnAttribute = btn.getAttributeNames();
+            let getEvent = btnAttribute[0].split(":");
+            let eventBtn = getEvent[1];
+            let checkAttribute = btn.getAttribute(`v-on:${eventBtn}`);
+
+            btn.addEventListener(eventBtn, () => {
+              if (checkAttribute === "count--") {
+                this.data.count--;
+                span.innerText = this.data.count;
+              }
+              if (checkAttribute === "count++") {
+                this.data.count++;
+                span.innerText = this.data.count;
+              }
+              if (checkAttribute.includes("title=")) {
+                let contentTitle = checkAttribute.split("=");
+                h1.innerHTML = contentTitle[1];
+              }
+            });
+          });
         }
       }
     );
