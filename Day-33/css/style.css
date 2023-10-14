@@ -11,17 +11,27 @@ p {
   color: black;
 }
 
-.stop-btn,
 .btn {
-  width: 100px;
-  height: 100px;
-  padding: 10px;
-  border-radius: 50%;
-  border: none;
-  outline: none;
+  background-color: #3498db;
   color: #fff;
-  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  background-color: #549c24;
-  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn i {
+  margin-right: 10px;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.btn:active {
+  transform: scale(0.95);
 }
