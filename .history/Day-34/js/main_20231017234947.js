@@ -1,6 +1,6 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-const apiUrl = "https://rygnft-8080.csb.app/todos";
+const apiUrl = "http://localhost:3000/todos";
 
 const taskList = $(".task-list");
 const taskListFinished = $(".task-list-completed");
