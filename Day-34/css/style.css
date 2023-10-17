@@ -134,7 +134,7 @@ button {
   inset: 0;
   background-color: #99999980;
   transition-property: opacity, visibility;
-  transition-duration: 0.3s;
+  transition-duration: 0.1s;
 }
 
 .add-todo-wrapper {
@@ -173,4 +173,14 @@ button {
   background: #9ca3af;
   margin-left: 0;
   margin-top: 20px;
+}
+
+/*  */
+
+.font-bold {
+  font-weight: 700;
+}
+
+.bg-blue {
+  background-color: rgb(219 234 254);
 }

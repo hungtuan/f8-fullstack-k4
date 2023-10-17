@@ -12,7 +12,7 @@ const cancelAddBtn = $(".cancel-btn");
 const searchInput = $(".search-input");
 
 // Hàm gửi yêu cầu GET
-async function fetchTodoList() {
+async function getTodoLists() {
   const res = await fetch(apiUrl);
   const data = await res.json();
   return data;
@@ -63,10 +63,10 @@ function createTaskActionButtons() {
     </div>`;
 }
 
-// Hàm render danh sách
+// Hàm render danh sách completed
 async function render() {
   const taskItemHtml = createTaskActionButtons();
-  const data = await fetchTodoList();
+  const data = await getTodoLists();
   const todoUnfinished = data.filter((todo) => !todo.completed);
   const todoFinished = data.filter((todo) => todo.completed);
 
@@ -110,6 +110,14 @@ render();
 function addTodo() {
   let isAdd = false;
 
+  addBtn.addEventListener("click", () => {
+    addTodoWrapper
+      .querySelector("input")
+      .setAttribute("placeholder", "Add todos");
+    addTodoWrapper.querySelector("input").value = "";
+    addTodoWrapper.querySelector("input").focus();
+  });
+
   addBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     addTodoPopup.classList.toggle("hide");
@@ -134,6 +142,7 @@ function addTodo() {
   saveBtn.addEventListener("click", async (e) => {
     if (isAdd) {
       let value = addTodoWrapper.querySelector("input").value;
+
       value = value.trim();
       const data = {
         completed: false,
@@ -159,7 +168,7 @@ function removeTodo() {
 
   removeBtnsUnfinished.forEach((removeBtn, i) => {
     removeBtn.addEventListener("click", async (e) => {
-      const data = await fetchTodoList();
+      const data = await getTodoLists();
       const todoUnfinished = data.filter((todo) => !todo.completed);
       await removeTodoItem(todoUnfinished[i].id);
       render();
@@ -168,7 +177,7 @@ function removeTodo() {
 
   removeBtnsFinished.forEach((removeBtn, i) => {
     removeBtn.addEventListener("click", async (e) => {
-      const data = await fetchTodoList();
+      const data = await getTodoLists();
       const todoFinished = data.filter((todo) => todo.completed);
       await removeTodoItem(todoFinished[i].id);
       render();
@@ -202,7 +211,7 @@ function checkComplete() {
   const completeBtns = taskList.querySelectorAll(".complete-btn");
   completeBtns.forEach((completeBtn, i) => {
     completeBtn.addEventListener("click", async (e) => {
-      const data = await fetchTodoList();
+      const data = await getTodoLists();
       const todoUnfinished = data.filter((todo) => !todo.completed);
       await updateTodoItem(todoUnfinished[i].id, {
         completed: true,
@@ -214,7 +223,7 @@ function checkComplete() {
   const uncompleteBtns = taskListFinished.querySelectorAll(".complete-btn");
   uncompleteBtns.forEach((uncompleteBtn, i) => {
     uncompleteBtn.addEventListener("click", async (e) => {
-      const data = await fetchTodoList();
+      const data = await getTodoLists();
       const todoFinished = data.filter((todo) => todo.completed);
       await updateTodoItem(todoFinished[i].id, {
         completed: false,
@@ -228,14 +237,27 @@ function search() {
   searchInput.addEventListener("input", (e) => {
     const value = e.target.value.toLowerCase();
     const tasks = document.querySelectorAll(".task-item");
+
     tasks.forEach((task) => {
+      const titleTask = task.querySelector(".task-title");
       const title = task.querySelector(".task-title").textContent.toLowerCase();
+
       if (title.indexOf(value) === -1) {
         task.classList.add("hide");
         task.style.height = "0";
       } else {
         task.classList.remove("hide");
         task.style.height = "60px";
+      }
+
+      if (value !== "") {
+        const replacedTitle = title.replace(
+          value,
+          `<span class="bg-blue font-bold">${value}</span>`
+        );
+        titleTask.innerHTML = replacedTitle;
+      } else {
+        titleTask.innerText = title;
       }
     });
   });
@@ -247,25 +269,62 @@ function editTodo() {
   let isEdit = false;
 
   const editBtnsUnfinished = taskList.querySelectorAll(".edit-btn");
+  const editBtnsfinished = taskListFinished.querySelectorAll(".edit-btn");
 
+  //
   editBtnsUnfinished.forEach((editBtn, i) => {
     editBtn.addEventListener("click", async (e) => {
       isEdit = true;
       e.stopPropagation();
       addTodoPopup.classList.remove("hide");
-      const data = await fetchTodoList();
+      const data = await getTodoLists();
       const todoUnfinished = data.filter((todo) => !todo.completed);
+
+      addTodoWrapper.querySelector("input").value = todoUnfinished[i].title;
+
       addTodoWrapper
         .querySelector("input")
         .setAttribute("placeholder", "Edit todos");
-      addTodoWrapper.querySelector("input").value = todoUnfinished[i].title;
       addTodoWrapper.querySelector("input").focus();
       saveBtn.addEventListener("click", async (e) => {
         if (isEdit) {
           let value = addTodoWrapper.querySelector("input").value;
           value = value.trim();
-          const data = await fetchTodoList();
+          const data = await getTodoLists();
           const todoUnfinished = data.filter((todo) => !todo.completed);
+          await updateTodoItem(todoUnfinished[i].id, {
+            title: value,
+          });
+          addTodoPopup.classList.add("hide");
+          addTodoWrapper.querySelector("input").value = "";
+          render();
+          isEdit = false;
+        }
+      });
+    });
+  });
+
+  //
+
+  editBtnsfinished.forEach((editBtn, i) => {
+    editBtn.addEventListener("click", async (e) => {
+      isEdit = true;
+      e.stopPropagation();
+      addTodoPopup.classList.remove("hide");
+      const data = await getTodoLists();
+      const todoUnfinished = data.filter((todo) => todo.completed);
+      addTodoWrapper.querySelector("input").value = todoUnfinished[i].title;
+
+      addTodoWrapper
+        .querySelector("input")
+        .setAttribute("placeholder", "Edit todos");
+      addTodoWrapper.querySelector("input").focus();
+      saveBtn.addEventListener("click", async (e) => {
+        if (isEdit) {
+          let value = addTodoWrapper.querySelector("input").value;
+          value = value.trim();
+          const data = await getTodoLists();
+          const todoUnfinished = data.filter((todo) => todo.completed);
           await updateTodoItem(todoUnfinished[i].id, {
             title: value,
           });
