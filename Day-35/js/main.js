@@ -1,6 +1,5 @@
 import { client } from "./client.js";
 
-const pageLoading = document.querySelector(".page-loading");
 const postsEl = document.querySelector(".posts");
 
 let isLoading = false;
@@ -23,8 +22,9 @@ const renderPost = ({ id, user, title, content }) => {
 
   const img = document.createElement("img");
   img.classList.add("avatar-img");
-  if (user.is_pro) {
-    img.classList.add("pro");
+
+  if (user.admin) {
+    img.classList.add("admin");
     const crown = document.createElement("img");
     crown.src =
       "https://fullstack.edu.vn/static/media/crown.8edf462029b3c37a7f673303d8d3bedc.svg";
@@ -46,7 +46,7 @@ const renderPost = ({ id, user, title, content }) => {
   const separate = document.createElement("div");
   separate.style.width = "100%";
   separate.style.height = "10px";
-  separate.style.background = "red";
+  separate.style.background = "gray";
 
   postItem.append(h2, userInfo, divContent, separate);
   postsEl.append(postItem);
@@ -60,6 +60,7 @@ const getPosts = async (query = {}, isLoadMore = false) => {
     if (!isLoadMore) {
       postsEl.innerHTML = "";
     }
+
     data.forEach(renderPost);
     return data;
   } catch (error) {
@@ -81,6 +82,7 @@ const fetchMoreData = () => {
     .then(() => {
       isLoading = false;
       loadMoreText.remove();
+      page = 1;
     })
     .catch((error) => {
       isLoading = false;
