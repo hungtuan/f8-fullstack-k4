@@ -13,6 +13,7 @@ const renderPost = ({ id, user, title, content }) => {
   const h2 = document.createElement("h2");
   h2.classList.add("post-title");
   h2.innerText = title;
+  postItem.append(h2);
 
   const userInfo = document.createElement("div");
   userInfo.classList.add("user-info");
@@ -43,12 +44,7 @@ const renderPost = ({ id, user, title, content }) => {
   const htmlContent = marked.parse(content);
   divContent.innerHTML = htmlContent;
 
-  const separate = document.createElement("div");
-  separate.style.width = "100%";
-  separate.style.height = "10px";
-  separate.style.background = "gray";
-
-  postItem.append(h2, userInfo, divContent, separate);
+  postItem.append(h2, userInfo, divContent);
   postsEl.append(postItem);
 };
 
@@ -57,11 +53,10 @@ const getPosts = async (query = {}, isLoadMore = false) => {
 
   try {
     const { data } = await client.get(`/posts?${queryString}`);
-    if (!isLoadMore) {
-      postsEl.innerHTML = "";
-    }
 
-    data.forEach(renderPost);
+    if (!isLoadMore) {
+      data.forEach(renderPost);
+    }
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -74,21 +69,32 @@ const fetchMoreData = () => {
   }
 
   isLoading = true;
-  const loadMoreText = document.createElement("p");
-  loadMoreText.innerText = "Loading...";
-  postsEl.append(loadMoreText);
+  const loadingContainer = document.createElement("div");
+  loadingContainer.classList.add("sk-fading-circle");
+  loadingContainer.innerHTML = `
+    <div class="sk-circle1 sk-circle"></div>
+    <div class="sk-circle2 sk-circle"></div>
+    <div class="sk-circle3 sk-circle"></div>
+    <div class="sk-circle4 sk-circle"></div>
+    <div class="sk-circle5 sk-circle"></div>
+    <div class="sk-circle6 sk-circle"></div>
+    <div class="sk-circle7 sk-circle"></div>
+    <div class="sk-circle8 sk-circle"></div>
+    <div class="sk-circle9 sk-circle"></div>
+    <div class="sk-circle10 sk-circle"></div>
+  `;
 
-  getPosts({ _limit: limitPostInPage, _page: page++ }, true)
-    .then(() => {
-      isLoading = false;
-      loadMoreText.remove();
-      page = 1;
-    })
-    .catch((error) => {
-      isLoading = false;
-      loadMoreText.remove();
-      console.error("Error loading more data:", error);
-    });
+  postsEl.append(loadingContainer);
+
+  getPosts({}, true).then((data) => {
+    page++;
+    getPosts({ _limit: limitPostInPage, _page: page });
+    if (page > data.length / limitPostInPage) {
+      page = 0;
+    }
+    isLoading = false;
+    loadingContainer.remove();
+  });
 };
 
 window.addEventListener("scroll", () => {
