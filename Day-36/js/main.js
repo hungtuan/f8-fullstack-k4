@@ -1,4 +1,3 @@
-import { config } from "./config.js";
 import { client } from "./client.js";
 
 const loading = document.querySelector(".loading-container");
@@ -273,18 +272,18 @@ function renderResult() {
                     <p class "result-text">${numberOfCorrectAnswer}</p>
                     <p class="result-title">Correct</p>
                     </div>
-        <button class="play-again" style="z-index: 2">Chơi lại</button>
+                    <button class="play-again" style="z-index: 2">Chơi lại</button>
                     
                 </div>
             </div>
         `;
     resultPage.innerHTML = html;
 
-    //
+    //Play Again
 
     const playAgainBtn = document.querySelector(".play-again");
     playAgainBtn.addEventListener("click", () => {
-      playAgain(); // Gọi hàm animate1() khi nhấn nút "Chơi lại"
+      playAgain(); //Gọi hàm chơi lại
     });
     resultPage.style.display = "block";
   });
