@@ -167,39 +167,6 @@ function chooseAnswer() {
   });
 }
 
-function playAgain() {
-  const actionContainer = document.querySelector(".action-container");
-  const quizContainer = document.querySelector(".quiz-container");
-  const questionList = document.querySelector(".question-list");
-  const resultPage = document.querySelector(".result-page");
-  const loading = document.querySelector(".loading-container");
-
-  // Ẩn nút "Chơi lại" khi bắt đầu trò chơi
-  resultPage.style.display = "none";
-  // Thêm sự kiện cho nút "Chơi lại"
-  loading.classList.remove("hide");
-
-  // Đặt lại tất cả biến và bắt đầu trò chơi lại
-  numberQuestion = 0;
-
-  isCorrect = false;
-  numberIsChecked = 0;
-  score = 0;
-  answerArr = [];
-  numberOfCorrectAnswer = 0;
-  numberOfInCorrectAnswer = 0;
-  isNext = false;
-
-  actionContainer.classList.add("hide");
-  quizContainer.classList.remove("hide");
-  loading.classList.add("hide");
-
-  questionList.classList.remove("hide");
-  renderQuestion();
-  nextSlide();
-  countdownTimer();
-}
-
 function nextSlide() {
   setTimeout(() => {
     document.querySelector(".question-list").style.transform = `translateX(-${
@@ -245,6 +212,39 @@ function countdownTimer() {
   }
 
   countdown();
+}
+
+function playAgain() {
+  const actionContainer = document.querySelector(".action-container");
+  const quizContainer = document.querySelector(".quiz-container");
+  const questionList = document.querySelector(".question-list");
+  const resultPage = document.querySelector(".result-page");
+  const loading = document.querySelector(".loading-container");
+
+  // Ẩn nút "Chơi lại" khi bắt đầu trò chơi
+  resultPage.style.display = "none";
+  // Thêm sự kiện cho nút "Chơi lại"
+  loading.classList.remove("hide");
+
+  // Đặt lại tất cả biến và bắt đầu trò chơi lại
+  numberQuestion = 0;
+
+  isCorrect = false;
+  numberIsChecked = 0;
+  score = 0;
+  answerArr = [];
+  numberOfCorrectAnswer = 0;
+  numberOfInCorrectAnswer = 0;
+  isNext = false;
+
+  actionContainer.classList.add("hide");
+  quizContainer.classList.remove("hide");
+  loading.classList.add("hide");
+
+  questionList.classList.remove("hide");
+  renderQuestion();
+  nextSlide();
+  countdownTimer();
 }
 
 function renderResult() {
