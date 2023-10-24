@@ -1,165 +1,291 @@
-import { client } from "./client.js";
 import { config } from "./config.js";
-const { PAGE_LIMIT } = config;
+import { client } from "./client.js";
 
-const app = {
-  rootEl: document.querySelector(".posts"),
-  query: {
-    _sort: "id",
-    _order: "desc",
-    _limit: PAGE_LIMIT,
-    _page: 1,
-  },
-  modalEl: document.querySelector("#post-detail"),
+const loading = document.querySelector(".loading-container");
+const audio = document.querySelector(".audio");
 
-  render: function (posts) {
-    const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
-    this.rootEl.innerHTML = `<div class="row g-3">
-    ${posts
-      .map(
-        ({ id, title, excerpt }) => `<div class="col-6 col-md-4">
-    <div class="post-item border p-3">
-    <h3><a href="#" data-bs-toggle="modal" data-bs-target="#post-detail" data-id=${id}>${stripHtml(
-          title
-        )}</a></h3>
-     
-      <p>
-        ${stripHtml(excerpt)}
-      </p>
-    </div>
-  </div>`
-      )
-      .join("")}
-  </div>`;
-  },
+let numberQuestion = 1;
+let isCorrect = false;
+let numberIsChecked = 0;
+let score = 0;
+let answerArr = [];
+let numberOfCorrectAnswer = 0;
+let numberOfInCorrectAnswer = 0;
+let timeOutId;
+let isNext = false;
 
-  pagination: function (totalPage) {
-    const paginationRoot = document.querySelector(".page");
-
-    //Tạo 1 array từ 0 đến totalPage
-    const range = [...Array(totalPage).keys()];
-
-    paginationRoot.innerHTML = `<nav class="d-flex justify-content-end mt-3">
-    <ul class="pagination pagination-sm">
-      <li class="page-item"><a class="page-link" href="#">Trước</a></li>
-      
-      ${range
-        .map(
-          (index) =>
-            `<li class="page-item ${
-              +this.query._page === index + 1 ? "active" : ""
-            }"><a class="page-link" href="#">${index + 1}</a></li>`
-        )
-        .join("")}
-      
-      
-      <li class="page-item"><a class="page-link" href="#">Sau</a></li>
-    </ul>
-  </nav>`;
-  },
-
-  // handleGoPage: function () {
-  //   this.pageEl.addEventListener("click", () => {});
-  // },
-
-  //Call API
-  getPosts: async function (query = {}) {
-    console.log(query);
-
-    let queryString = Object.entries(query)
-      .map((item) => {
-        return item.join("=");
-      })
-      .join("&")
-      .replaceAll(" ", "+");
-
-    queryString = queryString ? "?" + queryString : "";
-
-    const { data: posts, response } = await client.get(`/posts${queryString}`);
-    this.render(posts);
-    window.scroll({
-      top: 0,
-    });
-
-    // Tổng số trang
-    // ToalPage = Math.ceil("Tổng số bài viết/limit")
-    const totalPosts = response.headers.get("x-total-count");
-    const totalPage = Math.ceil(totalPosts / PAGE_LIMIT);
-    this.pagination(totalPage);
-  },
-
-  handleSearch: function () {
-    const searchForm = document.querySelector(".search");
-    searchForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const keywordEl = e.target.querySelector(".keyword");
-      const keyword = keywordEl.value;
-
-      this.query.q = keyword;
-      this.getPosts(this.query);
-    });
-  },
-
-  handleSort: function () {
-    const sortBy = document.querySelector(".sort-by");
-    sortBy.addEventListener("change", (e) => {
-      const value = e.target.value;
-      this.query._order = value;
-
-      this.getPosts(this.query);
-    });
-  },
-
-  handleShowDetail: function () {
-    let postId = null;
-
-    this.rootEl.addEventListener("click", (e) => {
-      if (e.target.dataset.bsTarget === "#post-detail") {
-        postId = e.target.dataset.id;
-      }
-    });
-    this.modalEl.addEventListener("shown.bs.modal", () => {
-      if (postId) {
-        this.getPost(postId);
-      }
-    });
-  },
-
-  handleCloseModal: function () {
-    this.modalEl.addEventListener("hidden.bs.modal", () => {
-      const titleEl = this.modalEl.querySelector(".modal-title");
-      const bodyEl = this.modalEl.querySelector(".modal-body");
-      titleEl.innerText = "";
-      bodyEl.innerText = "";
-    });
-  },
-
-  getPost: async function (id) {
-    const titleEl = this.modalEl.querySelector(".modal-title");
-    const bodyEl = this.modalEl.querySelector(".modal-body");
-
-    const { data: post, response } = await client.get(`/posts/${id}`);
-    console.log(post);
-    if (response.ok) {
-      const { title, content } = post;
-      titleEl.innerText = title;
-      bodyEl.innerText = content;
-    } else {
-      titleEl.innerText = `404 Not Found`;
-      bodyEl.innerText = `Khong tim thay bai viet`;
-    }
-  },
-
-  //Khởi động app
-  start: function () {
-    this.getPosts(this.query);
-    this.handleSearch();
-    this.handleSort();
-    // this.handleGoPage();
-    this.handleShowDetail();
-    this.handleCloseModal();
-  },
+const getData = async (resource = "questions", query = {}) => {
+  const queryString = new URLSearchParams(query).toString();
+  const { response, data } = await client.get(`/${resource}?${queryString}`);
+  return data;
 };
 
-//Chạy app
-app.start();
+const questionData = getData();
+
+function animate() {
+  const startBtn = document.querySelector(".start-btn");
+  const actionContainer = document.querySelector(".action-container");
+  const quizContainer = document.querySelector(".quiz-container");
+  const questionList = document.querySelector(".question-list");
+
+  startBtn.addEventListener("click", () => {
+    actionContainer.classList.add("hide");
+    quizContainer.classList.remove("hide");
+
+    loading.classList.add("hide");
+    questionList.classList.remove("hide");
+    countdownTimer();
+  });
+}
+
+animate();
+
+function renderQuestion() {
+  const questionList = document.querySelector(".question-list");
+  questionList.innerHTML = "";
+  questionData.then((data) => {
+    data.forEach((question, index) => {
+      const questionItem = document.createElement("div");
+      questionItem.classList.add("question-item");
+      questionList.appendChild(questionItem);
+
+      const questionContainer = document.createElement("div");
+      questionContainer.classList.add("question-container");
+      questionItem.appendChild(questionContainer);
+
+      const quantityQuestion = document.createElement("div");
+      quantityQuestion.classList.add("quantity-question");
+      quantityQuestion.innerHTML = `${++index}/${data.length}`;
+      questionContainer.appendChild(quantityQuestion);
+
+      const scoreContainer = document.createElement("div");
+      scoreContainer.classList.add("score-container");
+      scoreContainer.innerHTML = `Score: <span class="score">0</span>`;
+      questionContainer.appendChild(scoreContainer);
+
+      const countdown = document.createElement("div");
+      countdown.classList.add("countdown");
+
+      const countdownTimer = document.createElement("div");
+      countdownTimer.classList.add("countdown-timer");
+      countdown.appendChild(countdownTimer);
+
+      const progressBar = document.createElement("div");
+      progressBar.classList.add("progress-bar");
+      countdown.appendChild(progressBar);
+
+      const progress = document.createElement("div");
+      progress.classList.add("progress");
+      progress.id = "progress";
+      progressBar.appendChild(progress);
+      questionContainer.appendChild(countdown);
+
+      const questionText = document.createElement("p");
+      questionText.classList.add("question");
+      questionText.innerHTML = `${question.question}`;
+      if (question.correct_answers.length >= 2) {
+        const questionNote = document.createElement("p");
+        questionNote.classList.add("question-note");
+        questionNote.innerHTML = `Note: Bạn có thể chọn nhiều đáp án`;
+        questionText.appendChild(questionNote);
+      }
+      questionContainer.appendChild(questionText);
+
+      const answerContainer = document.createElement("div");
+      answerContainer.classList.add("answer-container");
+      questionContainer.appendChild(answerContainer);
+
+      question.options.forEach((option, index) => {
+        const answer = document.createElement("div");
+        answer.classList.add("answer");
+        answer.innerHTML = `${option}`;
+        answer.setAttribute("data-index", index);
+        answerContainer.appendChild(answer);
+      });
+      questionList.appendChild(questionItem);
+    });
+
+    chooseAnswer();
+  });
+}
+
+renderQuestion();
+
+function chooseAnswer() {
+  const answerBtns = document.querySelectorAll(".answer");
+  answerBtns.forEach((answerBtn) => {
+    answerBtn.addEventListener("click", (e) => {
+      const el = e.target;
+      answerArr.push(el.innerHTML);
+      numberIsChecked++;
+
+      questionData.then((data) => {
+        let numberOfAnswers = data[numberQuestion - 1].correct_answers.length;
+        if (data[numberQuestion - 1].correct_answers.includes(el.innerHTML)) {
+          el.classList.add("correct");
+          isCorrect = true;
+        } else {
+          isCorrect = false;
+          el.classList.add("incorrect");
+          if (audio.src !== "./music/Day36_sound_incorrect.mp3") {
+            audio.src = "./music/Day36_sound_incorrect.mp3";
+          }
+          audio.play();
+          numberOfInCorrectAnswer++;
+          if (!isNext) {
+            nextSlide();
+          }
+          isNext = true;
+          return;
+        }
+        if (numberIsChecked === numberOfAnswers) {
+          if (isCorrect) {
+            score += 100;
+            const scoreContainer =
+              document.querySelectorAll(".score-container");
+            scoreContainer.forEach((scoreContainer) => {
+              scoreContainer.innerHTML = `Score: <span class="score">${score}</span>`;
+            });
+            if (audio.src !== "./music/Day36_sound_correct.mp3") {
+              audio.src = "./music/Day36_sound_correct.mp3";
+            }
+            audio.play();
+            numberOfCorrectAnswer++;
+          } else {
+            if (audio.src !== "./music/Day36_sound_incorrect.mp3") {
+              audio.src = "./music/Day36_sound_incorrect.mp3";
+            }
+            audio.play();
+            numberOfInCorrectAnswer++;
+          }
+          if (!isNext) {
+            nextSlide();
+          }
+          isNext = true;
+        }
+      });
+    });
+  });
+}
+
+function nextSlide() {
+  setTimeout(() => {
+    document.querySelector(".question-list").style.transform = `translateX(-${
+      numberQuestion * 100
+    }vw)`;
+    numberQuestion++;
+    answerArr = [];
+    numberIsChecked = 0;
+    isCorrect = false;
+    countdownTimer();
+    isNext = false;
+  }, 500);
+}
+
+function countdownTimer() {
+  if (timeOutId) {
+    clearTimeout(timeOutId);
+  }
+  let secondsLeft = 10;
+  const progressElement = document.querySelectorAll(".progress");
+
+  function updateProgressBar() {
+    const progressWidth = (secondsLeft / 10) * 100;
+    progressElement.forEach((progress) => {
+      progress.style.width = progressWidth + "%";
+    });
+  }
+
+  function countdown() {
+    updateProgressBar();
+    questionData.then((data) => {
+      if (numberQuestion > data.length) {
+        renderResult();
+        return;
+      }
+      if (secondsLeft > 0) {
+        secondsLeft--;
+        timeOutId = setTimeout(countdown, 1000);
+      } else {
+        nextSlide();
+      }
+    });
+  }
+
+  countdown();
+}
+
+function playAgain() {
+  const actionContainer = document.querySelector(".action-container");
+  const quizContainer = document.querySelector(".quiz-container");
+  const questionList = document.querySelector(".question-list");
+  const resultPage = document.querySelector(".result-page");
+  const loading = document.querySelector(".loading-container");
+
+  // Ẩn nút "Chơi lại" khi bắt đầu trò chơi
+  resultPage.style.display = "none";
+  // Thêm sự kiện cho nút "Chơi lại"
+  loading.classList.remove("hide");
+
+  // Đặt lại tất cả biến và bắt đầu trò chơi lại
+  numberQuestion = 0;
+
+  isCorrect = false;
+  numberIsChecked = 0;
+  score = 0;
+  answerArr = [];
+  numberOfCorrectAnswer = 0;
+  numberOfInCorrectAnswer = 0;
+  isNext = false;
+
+  actionContainer.classList.add("hide");
+  quizContainer.classList.remove("hide");
+  loading.classList.add("hide");
+
+  questionList.classList.remove("hide");
+  renderQuestion();
+  nextSlide();
+  countdownTimer();
+}
+
+function renderResult() {
+  const resultPage = document.querySelector(".result-page");
+
+  questionData.then((data) => {
+    const html = `
+            <div class="question-container">
+                <h2 style="text-align: center;">Result</h2>
+                <div class="result-list">
+                    <div class="result-item">
+                    <p class="result-text">${score}</p>
+                    <p class="result-title">Score</p>
+                    </div>
+                    <div class="result-item">
+                    <p class="result-text">${data.length}</p>
+                    <p class="result-title">Total Question</p>
+                    </div>
+                    
+                    <div class="result-item">
+                    <p class "result-text">${numberOfInCorrectAnswer}</p>
+                    <p class="result-title">Incorrect</p>
+                    </div>
+                    <div class="result-item">
+                    <p class "result-text">${numberOfCorrectAnswer}</p>
+                    <p class="result-title">Correct</p>
+                    </div>
+        <button class="play-again" style="z-index: 2">Chơi lại</button>
+                    
+                </div>
+            </div>
+        `;
+    resultPage.innerHTML = html;
+
+    //
+
+    const playAgainBtn = document.querySelector(".play-again");
+    playAgainBtn.addEventListener("click", () => {
+      playAgain(); // Gọi hàm animate1() khi nhấn nút "Chơi lại"
+    });
+    resultPage.style.display = "block";
+  });
+}

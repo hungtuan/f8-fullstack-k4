@@ -3,45 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz</title>
+    <title>Document</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
     />
+
     <link rel="stylesheet" href="./css/style.css" />
   </head>
+
   <body>
-    <div class="loading-container hide">
-      <div class="loader">
-        <div class="loader-inner">
-          <div class="loader-line-wrap">
-            <div class="loader-line"></div>
+    <div class="container py-3">
+      <h2 class="text-center">Danh sách bài viết</h2>
+      <hr />
+      <form action="" class="search mb-3">
+        <div class="row">
+          <div class="col-5">
+            <input
+              type="search"
+              class="form-control keyword"
+              placeholder="Từ khóa..."
+            />
           </div>
-          <div class="loader-line-wrap">
-            <div class="loader-line"></div>
+          <div class="col-3 d-grid">
+            <button class="btn btn-primary">Tìm kiếm</button>
           </div>
-          <div class="loader-line-wrap">
-            <div class="loader-line"></div>
+          <div class="col-4">
+            <select class="form-select sort-by">
+              <option value="desc">Mới nhất</option>
+              <option value="asc">Cũ nhất</option>
+            </select>
           </div>
-          <div class="loader-line-wrap">
-            <div class="loader-line"></div>
+        </div>
+      </form>
+      <div class="posts"></div>
+      <div class="page"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="post-detail" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
-          <div class="loader-line-wrap">
-            <div class="loader-line"></div>
-          </div>
+          <div class="modal-body"></div>
         </div>
       </div>
     </div>
-    <main class="main">
-      <div class="action-container">
-        <button class="start-btn btn">Start</button>
-      </div>
-      <div class="quiz-container animate__animated hide">
-        <div class="question-list hide"></div>
-      </div>
-      <div class="result-page"></div>
-    </main>
-    <audio src="" class="audio"></audio>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"
+      integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>
