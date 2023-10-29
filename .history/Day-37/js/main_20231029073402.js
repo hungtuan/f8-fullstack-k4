@@ -246,6 +246,21 @@ const app = {
 
     this.root.addEventListener("submit", (e) => {
       e.preventDefault();
+      if (e.target.classList.contains("register")) {
+        const nameRegister = e.target.querySelector(".name-register");
+        const emailRegister = e.target.querySelector(".email-register");
+        const passwordRegister = e.target.querySelector(".password-register");
+
+        const name = nameRegister.value;
+        const email = emailRegister.value;
+        const password = passwordRegister.value;
+        console.log(name, email, password);
+        this.signUp({ name, email, password });
+      }
+    });
+
+    this.root.addEventListener("submit", (e) => {
+      e.preventDefault();
       if (e.target.classList.contains("post-form")) {
         const titleEl = e.target.querySelector("#title");
         const contentEl = e.target.querySelector("#content");
