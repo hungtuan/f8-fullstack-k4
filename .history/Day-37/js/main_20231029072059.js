@@ -19,8 +19,8 @@ const app = {
     <button class="loginButton">Đăng Nhập</button>
     </div>`;
 
-    const postsElement = await this.renderPosts();
-    this.root.innerHTML = `${home}${postsElement.innerHTML}`;
+    // const postsElement = await this.renderPosts();
+    // this.root.innerHTML = `${home}${postsElement.innerHTML}`;
     return home;
   },
 
@@ -39,7 +39,7 @@ const app = {
     } else {
       const postsElement = await this.renderPosts();
 
-      html = `${await this.goHomePage()}${postsElement.innerHTML}`;
+      html = `${this.goHomePage()}${postsElement.innerHTML}`;
     }
 
     this.root.innerHTML = html;

@@ -39,7 +39,7 @@ const app = {
     } else {
       const postsElement = await this.renderPosts();
 
-      html = `${await this.goHomePage()}${postsElement.innerHTML}`;
+      html = `${this.goHomePage()}${postsElement.innerHTML}`;
     }
 
     this.root.innerHTML = html;
