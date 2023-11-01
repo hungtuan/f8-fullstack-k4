@@ -1,4 +1,5 @@
 export const config = {
-  SERVER_API: "https://rygnft-8080.csb.app",
+  SERVER_API: "http://localhost:3000",
   SERVER_API_AUTH: "https://api-auth-two.vercel.app",
+  PAGE_LIMIT: 3,
 };

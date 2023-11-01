@@ -8,7 +8,11 @@ const app = {
   root: document.querySelector("#root"),
   loginForm: document.querySelector(".login"),
   isLogin: function () {
-    const status = localStorage.getItem("access_token") ? true : false;
+    const status =
+      localStorage.getItem("access_token") ||
+      localStorage.getItem("refresh_token")
+        ? true
+        : false;
     return status;
   },
 
@@ -50,20 +54,12 @@ const app = {
     console.log(response, posts);
 
     if (response.ok) {
+      const self = this;
       const postsEl = document.createElement("div");
       postsEl.classList.add("posts");
       posts.data.forEach(function (post) {
         //
-        const currentTime = new Date();
-        const createdAtTime = new Date(post.createdAt);
-        const timeDifference = currentTime - createdAtTime;
-        const secondsDifference = Math.floor(timeDifference / 1000);
-        const minutesDifference = Math.floor(secondsDifference / 60);
-        const remainingMinutes = minutesDifference % 60;
-
-        const hoursDifference = Math.floor(minutesDifference / 60);
-
-        //
+        const time = new Date(post.createdAt);
         const postEl = document.createElement("div");
         postEl.classList.add("post");
         postEl.innerHTML = `
@@ -72,11 +68,11 @@ const app = {
           <div class="time">
               <div class="time-detail">
                   <span class="preiod">
-                      <span>${hoursDifference} giờ trước</span>
+                      <span>${self.handleTime(post.createdAt)}</span>
                   </span>
                   <div class="time-post">
-                      <span class="hours">${hoursDifference}h sáng</span>
-                       <span class="minutes">${remainingMinutes} phút</span>
+                      <span class="hours">${time.getHours()} h</span>
+                       <span class="minutes">${time.getMinutes()} minutes</span>
                   </div>
               </div>
               <span class="tag-name">@${post.userId.name}</span>
@@ -91,9 +87,15 @@ const app = {
                   }</a></div>
               </div>
               <h2 class="title">${post.title}</h2>
-              <p class="post-content">
-                  ${post.content}
+              <div class="post-content">
+              <p class="short-content">
+                ${post.content}
               </p>
+              <div class="full-content">
+               <p>${post.content}</p>
+              </div>
+              <button class="read-more">Xem thêm</button>
+            </div>
               <div class="view-detail-post"><a href="#"># view more test...</a></div>
               <div class="post-footer">
                   <div class="user-profile"><a href="#"># admin01</a></div>
@@ -257,6 +259,25 @@ const app = {
         this.post({ title, content });
       }
     });
+
+    // Button Xem thêm
+    this.root.addEventListener("click", (e) => {
+      if (e.target.classList.contains("read-more")) {
+        const postContent = e.target.parentElement;
+        const shortContent = postContent.querySelector(".short-content");
+        const fullContent = postContent.querySelector(".full-content");
+
+        if (fullContent.style.display === "none") {
+          fullContent.style.display = "block";
+          shortContent.style.display = "none";
+          e.target.innerText = "Ẩn";
+        } else {
+          fullContent.style.display = "none";
+          shortContent.style.display = "block";
+          e.target.innerText = "Xem thêm";
+        }
+      }
+    });
   },
 
   loading: function (status = true) {
@@ -275,8 +296,7 @@ const app = {
 
   showError: function (msgText) {
     const msg = this.root.querySelector(".login .msg");
-    msg.innerText = ``;
-    msg.innerText = msgText;
+    msg.textContent = msgText;
   },
 
   login: async function (data) {
@@ -290,16 +310,38 @@ const app = {
         throw new Error("Email hoặc mật khẩu không hợp lệ");
       }
 
-      // Thêm token vào Storage
-      localStorage.setItem(
-        "access_token",
-        JSON.stringify(token.data.accessToken)
-      );
-
-      // Render
-      this.render();
+      if (response.ok) {
+        localStorage.setItem("access_token", token.data.accessToken);
+        localStorage.setItem("refresh_token", token.data.refreshToken);
+        client.setToken(token.data.accessToken);
+        this.render();
+      }
     } catch (e) {
       this.showError(e.message);
+    }
+  },
+
+  handleRefreshToken: async function () {
+    let refresh_token = localStorage.getItem("refresh_token");
+    console.log(refresh_token);
+    const { response, data: tokens } = await client.post(
+      "/auth/refresh-token",
+      {
+        refreshToken: refresh_token,
+      }
+    );
+    console.log(response, tokens);
+    if (response.ok) {
+      localStorage.setItem("access_token", tokens.data.token.accessToken);
+      localStorage.setItem("refresh_token", tokens.data.token.refreshToken);
+      client.setToken(tokens.data.token.accessToken);
+    } else {
+      alert("Vui lòng đăng nhập lại");
+      setTimeout(async function () {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        await this.goHomePage();
+      }, 3000);
     }
   },
 
@@ -327,108 +369,151 @@ const app = {
 
   post: async function (postdata) {
     try {
-      // call API
+      // Lấy giá trị ngày từ trường ngày
+      const postDate = this.root.querySelector("#post-date").value;
+      console.log(postDate);
 
+      // call API
       const { response, data } = await client.post("/blogs", postdata);
 
       console.log(response, data);
+
       if (response.ok) {
         alert("Thêm bài viết thành công");
         this.render();
+      } else if (response.status === 401) {
+        // Nếu token không hợp lệ hoặc đã hết hạn, làm mới token
+        await this.handleRefreshToken();
+
+        // Sau khi làm mới token, thử gọi lại phương thức post với token mới
+        const { response, data } = await client.post("/blogs", postdata);
+
+        console.log(response, data);
+
+        if (response.ok) {
+          alert("Thêm bài viết thành công");
+          this.render();
+        } else {
+          // Xử lý lỗi khi không thể thêm bài viết ngay cả khi đã làm mới token
+          console.error("Không thể thêm bài viết:", response.status, data);
+        }
       }
     } catch (e) {
       console.error(e.message);
     }
   },
 
-  // refreshToken: async function () {
-  //   let refresh_token = localStorage.getItem("refresh_token");
-  //   const { response, data: tokens } = await client.post(
-  //     "/auth/refresh-token",
-  //     {
-  //       refreshToken: refresh_token,
-  //     }
-  //   );
-
-  //   if (response.ok) {
-  //     localStorage.setItem("access_token", tokens.data.token.accessToken);
-  //     localStorage.setItem("refresh_token", tokens.data.token.refreshToken);
-  //     client.setToken(tokens.data.token.accessToken);
-  //     return response;
-  //   } else {
-  //     alert("Vui lòng đăng nhập lại");
-  //   }
-  // },
-
   getProfile: async function () {
     try {
-      let token = localStorage.getItem("access_token");
-      let accessToken;
-      if (token) {
-        accessToken = JSON.parse(token);
-      }
+      const accessToken = localStorage.getItem("access_token");
 
       if (!accessToken) {
-        throw new Error("accessToken not null");
+        throw new Error("accessToken not available");
       }
+
       client.setToken(accessToken);
+
       const { response, data: user } = await client.get("/users/profile");
 
-      if (!response.ok) {
-        throw new Error("Unauthorize");
-      }
+      if (response.ok) {
+        const profileEl = this.root.querySelector(".profile");
+        const container = this.root.querySelector(".container");
+        const profileName = profileEl.querySelector(".name");
+        profileName.innerText = user.data.name;
 
-      console.log(user);
-      const profileEl = this.root.querySelector(".profile");
-      const container = this.root.querySelector(".container");
-      const profileName = profileEl.querySelector(".name");
-      profileName.innerText = user.data.name;
-      if (!container.querySelector(".post-form")) {
-        let htmlPostNew = `
-      <div class="form-container form-post">
-      <h1>Create a New Post</h1>
-      <form class="post-form" >
-          <div class="form-group">
-              <label for="title">Enter Your Title</label>
-              <input type="text" id="title" name="title" placeholder="Title" required>
-              <p class="error" id="title-error">Please enter the title</p>
-          </div>
-          <div class="form-group">
-              <label for="content">Enter Your Content</label>
-              <textarea id="content" name="content" placeholder="Content" required></textarea>
-              <p class="error" id="content-error">Please enter your content</p>
-          </div>
-          
-          <div class="form-group">
-              <button type="submit" id="submit-button-post">Write New!</button>
-          </div>
-      </form>
+        if (!container.querySelector(".post-form")) {
+          const htmlPostNew = `
+  <div class="form-container form-post">
+    <h1>Create a New Post</h1>
+    <form class="post-form">
+      <div class="form-group">
+        <label for="title">Enter Your Title</label>
+        <input type="text" id="title" name="title" placeholder="Title" required>
+        <p class="error" id="title-error">Please enter the title</p>
       </div>
-      `;
-        profileEl.insertAdjacentHTML("afterend", htmlPostNew);
+      <div class="form-group">
+        <label for="content">Enter Your Content</label>
+        <textarea id="content" name="content" placeholder="Content" required></textarea>
+        <p class="error" id="content-error">Please enter your content</p>
+      </div>
+      <div class="form-group">
+        <label for="post-date">Choose Date</label>
+        <input type="date" id="post-date" name="post-date" required>
+      </div>
+      <div class="form-group">
+        <button type="submit" id="submit-button-post">Write New!</button>
+      </div>
+    </form>
+  </div>
+`;
+          profileEl.insertAdjacentHTML("afterend", htmlPostNew);
+        }
+
+        const postsElement = await this.renderPosts();
+        container.append(postsElement);
+      } else {
+        this.handleRefreshToken().then(async () => {
+          const { response, data: user } = await client.get("/users/profile");
+          if (response.ok) {
+            this.render();
+          }
+        });
       }
-
-      const postsElement = await this.renderPosts();
-
-      container.append(postsElement);
     } catch (e) {
-      if (e.message) {
-        this.logout();
-      }
+      console.error("Error in getProfile:", e);
     }
   },
 
-  logout: function () {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    this.render();
+  logout: async function () {
+    try {
+      const { response } = await client.post("/auth/logout", {});
+      if (response.ok) {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        client.token = null;
+        this.render();
+      } else {
+        this.handleRefreshToken().then(async () => {
+          const { response } = await client.post("/auth/logout", {});
+          if (response.ok) {
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            client.token = null;
+            this.render();
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Có lỗi xảy ra khi đăng xuất:", error);
+    }
+  },
+
+  handleTime: function (time) {
+    const currentTime = new Date();
+    const postedTime = new Date(time);
+    const secondSub = (currentTime.getTime() - postedTime.getTime()) / 1000;
+    // console.log(secondSub);
+    if (secondSub < 60) {
+      return `${Math.floor(secondSub)} giây trước`;
+    } else if (secondSub < 3600) {
+      return `${Math.floor(secondSub / 60)} phút trước`;
+    } else if (secondSub < 3600 * 60) {
+      return `${Math.floor(secondSub / 3600)} giờ trước`;
+    } else if (secondSub < 3600 * 60 * 31) {
+      return `${Math.floor(secondSub / (3600 * 60))} ngày trước`;
+    } else if (secondSub < 3600 * 60 * 31 * 12) {
+      return `${Math.floor(secondSub / (3600 * 60 * 31))} tháng trước`;
+    } else if (secondSub < 3600 * 60 * 31 * 12 * 5) {
+      return `${Math.floor(secondSub / (3600 * 60 * 31 * 12))} năm trước`;
+    } else {
+      return `Vài năm trước`;
+    }
   },
 
   start: function () {
     // Khởi động ứng dụng
     this.render();
     this.addEvent();
-    this.getProfile();
   },
 };
 app.start();

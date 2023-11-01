@@ -94,6 +94,9 @@ body {
 .post-content {
   font-size: 16px;
   margin: 10px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Xem chi tiết bài viết */
@@ -146,7 +149,7 @@ input[type="datetime-local"] {
 button {
   background-color: #007bff;
   color: #fff;
-  padding: 10px 20px;
+  padding: 6px 18px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -159,4 +162,42 @@ button:hover {
 .error {
   color: #ff0000;
   display: none;
+}
+
+.full-content {
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  white-space: normal;
+  overflow-wrap: break-word;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #eee;
+}
+
+.full-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.full-content::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+.full-content::-webkit-scrollbar-thumb:hover {
+  background-color: #333;
+}
+
+.full-content::-webkit-scrollbar-track {
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.read-more {
+  display: block;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+p {
+  padding-right: 12px;
 }
