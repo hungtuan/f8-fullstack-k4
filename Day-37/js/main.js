@@ -56,8 +56,16 @@ const app = {
     if (response.ok) {
       const self = this;
       const postsEl = document.createElement("div");
+
       postsEl.classList.add("posts");
       posts.data.forEach(function (post) {
+        //
+        post.content = self.handleLine(post.content);
+        post.content = self.handleEmail(post.content);
+        post.content = self.handlePhone(post.content);
+        post.content = self.handleLink(post.content);
+        post.content = self.handleSpace(post.content);
+        post.content = self.handleVideo(post.content);
         //
         const time = new Date(post.createdAt);
         const postEl = document.createElement("div");
@@ -270,11 +278,11 @@ const app = {
         if (fullContent.style.display === "none") {
           fullContent.style.display = "block";
           shortContent.style.display = "none";
-          e.target.innerText = "Ẩn";
+          e.target.innerText = "Ản";
         } else {
           fullContent.style.display = "none";
           shortContent.style.display = "block";
-          e.target.innerText = "Xem thêm";
+          e.target.innerText = "Xem Thêm";
         }
       }
     });
@@ -337,7 +345,7 @@ const app = {
       client.setToken(tokens.data.token.accessToken);
     } else {
       alert("Vui lòng đăng nhập lại");
-      setTimeout(async function () {
+      setTimeout(async () => {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
         await this.goHomePage();
@@ -508,6 +516,47 @@ const app = {
     } else {
       return `Vài năm trước`;
     }
+  },
+
+  handlePhone: function (content) {
+    const pattern = /((0|\+84)\d{9})/gi;
+    return content.replace(
+      pattern,
+      ` <a href="tel:$1" target="_blank" class="phone-regex">$1</a> `
+    );
+  },
+  handleEmail: function (content) {
+    const pattern = /(([\w\.-]{3,})@([\w\.-]{1,}\.[a-z]{2,}))/gi;
+    return content.replace(
+      pattern,
+      `<a href="mailto:$1" target="_blank" class="mail-regex">$1</a>`
+    );
+  },
+
+  handleVideo: function (content) {
+    const pattern =
+      /<span>www.youtube.com\/watch\?v\=([a-zA-Z0-9]+)(\&?[a-z0-9A-Z\=\-\_\.\/\+\?]+|)<\/span>/g;
+    return content.replace(
+      pattern,
+      `<iframe src="https://www.youtube.com/embed/$1" width="500" height="300"></iframe>`
+    );
+  },
+
+  handleLink: function (content) {
+    const pattern =
+      /((?:http|https):\/\/(((?:[a-z0-9][a-z0-9-_\.]*\.|)[a-z0-9][a-z0-9-_\.]*\.[a-z]{2,}(?::\d{2,}|))(\/|)[a-zA-Z0-9\?\=\-\_\.\+]*))(\&[^<]*|)/g;
+    return content.replace(
+      pattern,
+      `<a href="$1" target="_blank" class="link-regex"><span>$2</span></a>`
+    );
+  },
+  handleSpace: function (content) {
+    const pattern = /\s+/g;
+    return content.replace(pattern, " ");
+  },
+  handleLine: function (content) {
+    const pattern = /\n+/g;
+    return content.replace(pattern, "\n");
   },
 
   start: function () {
