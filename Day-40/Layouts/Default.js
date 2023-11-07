@@ -11,7 +11,7 @@ export const DefaultLayout = () => {
     <main class="main">
         <div class="container-main">
    <div class="nav">
-   <h2>Menu</h2>
+   <h2>-Menu-</h2>
            
    <ul>
        <li><a href="/">Home</a></li>
